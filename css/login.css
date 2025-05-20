@@ -1,0 +1,99 @@
+@import url("base.css");
+header{
+    display: flex;
+}
+.linha-h{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 10px;
+}
+
+.linha-h .item-h{
+    width: 400px;
+}
+
+.linha-h .item-h{
+    font-size: 30px;
+    color: rgb(255 247 202);
+
+}
+
+.linha-h .item-h a{
+    text-decoration: dashed;
+    color: rgb(255 247 202);
+    border-bottom: rgb(255 247 202) solid 2px;
+    
+}
+
+.linha-h img{
+    width: 150px;
+}
+
+
+main{
+    flex: 1;
+}
+
+
+.a-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.form-login{
+    background-color: rgb(25 75 50 );
+    width: 500px;
+    padding: 40px;
+    border-radius: 10px;
+    color: rgb(255 247 202);
+}
+
+.form-login p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 5px;
+}
+
+.form-login button{
+    background-color: rgb(255 247 202);
+    color: rgb(25 75 50 );
+}
+
+.form-login button:hover{
+    color: rgb(255 247 202);
+    background-color: rgb(25 75 50 );
+    border: 1px solid rgb(255 247 202);
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 900px){
+    .linha-h .item-h{
+        width: 100%;
+    }
+
+    
+    .form-login{
+        background-color: rgb(255 247 202);
+        width: 100%;
+        border: rgb(25 75 50 ) solid 1px;
+        border-radius: 10px;
+        color:  rgb(25 75 50 );
+        margin: 10px;
+    }
+
+    .form-login button{
+        color: rgb(255 247 202);
+        background-color: rgb(25 75 50 );
+    }
+
+
+}

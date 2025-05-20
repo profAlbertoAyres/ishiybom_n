@@ -1,0 +1,49 @@
+@import url('baseSite.css');
+
+
+.linha{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-around;
+}
+
+.linha .item{
+    width: 350px;
+}
+
+.img-produto-cat {
+    width: 100%;
+    height: 300px; /* Altura fixa */
+    object-fit: contain ; /* Ajusta a imagem proporcionalmente sem distorcer */
+}
+
+.card {
+    height: 100%; /* Para que as cards fiquem uniformes */
+}
+
+.card-text {
+    display: -webkit-box; /* Habilita o comportamento flexível */
+    -webkit-line-clamp: 4; /* Limita a 4 linhas */
+    -webkit-box-orient: vertical; /* Define a orientação do box */
+    overflow: hidden; /* Oculta o texto que ultrapassar as 4 linhas */
+    text-overflow: ellipsis; /* Adiciona "..." no final do texto excedente */
+    height: calc(1.2em * 5); /* Ajusta para caber exatamente 4 linhas (1.2em por linha) */
+    text-align: justify;
+}
+
+.modal-body p, ul{
+    text-align: justify;
+    margin-top: 10px;
+}
+
+@media (max-width: 1024px) {
+    .linha{
+        flex-direction: column;
+    }
+    .linha .item{
+        width: 100%;
+        margin: 10px;
+    }
+
+}

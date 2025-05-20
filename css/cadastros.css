@@ -1,0 +1,8 @@
+@import url('baseAdmin.css');
+
+.botoes-linha{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px;
+}

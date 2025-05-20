@@ -1,0 +1,6 @@
+@import url("baseAdmin.css");
+
+.form-lista{
+    display: flex;
+    gap: 10px;
+}
