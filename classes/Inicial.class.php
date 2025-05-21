@@ -14,7 +14,7 @@ class Inicial extends CRUD{
         $sql = "INSERT INTO $this->table (tituloinicial, textoinicial, imageminicial) VALUES (:tituloinicial, :textoinicial, :imageminicial)";
 
         // Preparar a declaração usando a classe Database
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':tituloinicial', $this->tituloInicial);
@@ -29,7 +29,7 @@ class Inicial extends CRUD{
         $sql = "UPDATE $this->table SET tituloinicial = :tituloinicial, textoinicial = :textoinicial, imageminicial = :imageminicial WHERE idinicial= :id";
 
         // Preparar a declaração usando a classe Database
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':tituloinicial', $this->tituloInicial);
