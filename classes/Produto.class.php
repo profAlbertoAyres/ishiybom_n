@@ -20,7 +20,7 @@ class Produto extends CRUD{
                 VALUES (:nomeproduto, :descricaoproduto, :categoriaproduto, :materialproduto, :alturaproduto, :comprimentoproduto, :larguraproduto, :pesoproduto)";
 
         // Preparar a declaração usando a classe Database
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':nomeproduto', $this->nomeProduto);
@@ -38,7 +38,7 @@ class Produto extends CRUD{
     }
     public function update($campo, $id){
         $sql = "UPDATE $this->table SET nomeproduto = :nomeproduto, descricaoproduto = :descricaoproduto, materialproduto = :materialproduto, categoriaproduto=:categoriaproduto, alturaproduto = :alturaproduto, comprimentoproduto = :comprimentoproduto,  larguraproduto = :larguraproduto, pesoproduto = :pesoproduto WHERE $campo=:id";
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':nomeproduto', $this->nomeProduto);
         $stmt->bindParam(':descricaoproduto', $this->descricaoProduto);
@@ -56,7 +56,7 @@ class Produto extends CRUD{
 
     public function produtoFiltro(string $campo, int $id){
         $sql = "SELECT p.*, m.nomematerial FROM  $this->table p left join material m on p.materialproduto  = m.idmaterial where $campo = :id;" ;
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id',$id, PDO::PARAM_INT);
         // Executar a consulta e verificar se funcionou
         $stmt->execute();

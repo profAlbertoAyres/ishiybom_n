@@ -13,7 +13,7 @@ class FotoProduto extends CRUD
         $sql = "INSERT INTO $this->table (nomefoto, produtofoto) 
          VALUES (:nomefoto, :produtofoto)";
         // Preparar a declaração usando a classe Database
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':nomefoto', $this->nomeFoto);
         $stmt->bindParam(':produtofoto', $this->produtoFoto);
@@ -27,7 +27,7 @@ class FotoProduto extends CRUD
     public function allPhoto(int $id)
     {
         $sql = "SELECT * FROM  $this->table WHERE produtofoto = :idProd";
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':idProd', $id, PDO::PARAM_INT);
         // Executar a consulta e verificar se funcionou
         $stmt->execute();

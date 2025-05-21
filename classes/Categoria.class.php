@@ -58,7 +58,7 @@ class Categoria extends CRUD{
                 VALUES (:nomeCategoria)";
 
         // Preparar a declaração usando a classe Database
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':nomeCategoria', $this->nomeCategoria);
@@ -70,7 +70,7 @@ class Categoria extends CRUD{
     }
     public function update($campo, $id){
         $sql = "UPDATE $this->table SET nomeCategoria=:nomeCategoria  WHERE $campo=:idCategoria";
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':nomeCategoria', $this->nomeCategoria);
         $stmt->bindParam(':idCategoria', $id);

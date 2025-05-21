@@ -29,7 +29,7 @@ class Usuario extends CRUD
     {
         $sql = "INSERT INTO $this->table (nomeUsuario, emailUsuario, senhaUsuario, nivel_acessoUsuario) 
                   VALUES (:nome, :email, :senha, :nivel_acesso)";
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
         try {
             $stmt->bindParam(':nome', $this->nome, PDO::PARAM_STR);
@@ -49,7 +49,7 @@ class Usuario extends CRUD
         $sql = "UPDATE $this->table 
                   SET nomeUsuario = :nome, emailUsuario = :email, senhaUsuario = :senha, nivel_acessoUsuario = :nivel_acesso 
                   WHERE $campo = :id";
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
         try {
             $stmt->bindParam(':nome', $this->nome, PDO::PARAM_STR);
@@ -68,7 +68,7 @@ class Usuario extends CRUD
     public function login()
     {
         $sql = "SELECT * FROM  $this->table WHERE nomeUsuario = :nome";
-        $stmt = Database::prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':nome', $this->nome);
         $stmt->execute();
 
@@ -127,14 +127,14 @@ class Usuario extends CRUD
         try {
             // Verifica se a senha atual está correta
             $sql = "SELECT senhaUsuario FROM $this->table WHERE nomeUsuario = :nomeUsuario";
-            $stmt = Database::prepare($sql);
+            $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':nomeUsuario', $nomeUsuario);
             $stmt->execute();
             $usuario = $stmt->fetch(PDO::FETCH_OBJ);
             if (password_verify($senhaAtual, $usuario->senhausuario)) {
                 // Atualiza o e-mail
                 $sql = "UPDATE $this->table SET emailUsuario = :email WHERE nomeUsuario = :nomeUsuario";
-                $stmt = Database::prepare($sql);
+                $stmt = $this->db->prepare($sql);
                 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $stmt->bindParam(':nomeUsuario', $nomeUsuario);
 
@@ -153,7 +153,7 @@ class Usuario extends CRUD
         try {
             // Verifica se a senha atual está correta
             $query = "SELECT senha FROM $this->table WHERE nomeUsuario = :nomeUsuario";
-            $stmt = Database::prepare($query);
+            $stmt = $this->db->prepare($query);
             $stmt->bindParam(':nomeUsuario', $nomeUsuario, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -163,7 +163,7 @@ class Usuario extends CRUD
                 // Atualiza com a nova senha (hash)
                 $novaSenhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
                 $query = "UPDATE $this->table SET senha = :novaSenha WHERE nomeUsuario = :nomeUsuario";
-                $stmt = Database::prepare($query);
+                $stmt = $this->db->prepare($query);
                 $stmt->bindParam(':novaSenha', $novaSenhaHash, PDO::PARAM_STR);
                 $stmt->bindParam(':nomeUsuario', $nomeUsuario, PDO::PARAM_STR);
 
