@@ -17,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE) {
 class Usuario extends CRUD
 {
 
-    protected $table = "Usuario";
+    protected $table = "usuario";
     private $id;
     private $nome;
     private $email;

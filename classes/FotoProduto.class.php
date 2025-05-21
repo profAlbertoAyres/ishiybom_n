@@ -2,7 +2,7 @@
 
 class FotoProduto extends CRUD
 {
-    protected $table = "FotoProduto";
+    protected $table = "fotoproduto";
     private $idFotoProd;
     private $produtoFoto;
     private $nomeFoto;

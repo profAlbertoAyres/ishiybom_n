@@ -1,7 +1,7 @@
 <?php
   
 class Produto extends CRUD{
-    protected $table = "Produto";
+    protected $table = "produto";
     private $idProduto;
     private $nomeProduto;
     private $descricaoProduto;
