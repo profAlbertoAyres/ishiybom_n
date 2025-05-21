@@ -25,7 +25,7 @@
   <header>
     <?php include"_parts/_menu.php" ?>
   </header>
-  <div class="container">
+  <main class="container">
     <form action="<?php echo htmlspecialchars('dbInicial.php') ?>" method="post" class="row g3 mt-3" enctype="multipart/form-data">
       <input type="hidden" name="idInicial" value="<?php echo $inicial->idinicial ?? ''; ?>">
       <div class="col-12 mb-3">
@@ -48,7 +48,7 @@
         </button>
       </div>
     </form>
-  </div>
+  </main>
   </main>
   <footer>
     <?php include "_parts/_footer.php" ?>

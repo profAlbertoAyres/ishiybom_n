@@ -6,18 +6,13 @@ class Produto extends CRUD{
     private $nomeProduto;
     private $descricaoProduto;
     private $categoriaProduto;
-    private $materialProduto;
-    private $alturaProduto;
-    private $comprimentoProduto;
-    private $larguraProduto;
-    private $pesoProduto;
     private $ativoProduto;
 
 
     public function add(){
         // SQL de inserção
-        $sql = "INSERT INTO $this->table (nomeproduto, descricaoproduto, categoriaproduto, materialproduto, alturaproduto, comprimentoproduto, larguraproduto, pesoproduto) 
-                VALUES (:nomeproduto, :descricaoproduto, :categoriaproduto, :materialproduto, :alturaproduto, :comprimentoproduto, :larguraproduto, :pesoproduto)";
+        $sql = "INSERT INTO $this->table (nomeproduto, descricaoproduto, categoriaproduto) 
+                VALUES (:nomeproduto, :descricaoproduto, :categoriaproduto)";
 
         // Preparar a declaração usando a classe Database
         $stmt = $this->db->prepare($sql);
@@ -26,28 +21,19 @@ class Produto extends CRUD{
         $stmt->bindParam(':nomeproduto', $this->nomeProduto);
         $stmt->bindParam(':descricaoproduto', $this->descricaoProduto);
         $stmt->bindParam(':categoriaproduto', $this->categoriaProduto);
-        $stmt->bindParam(':materialproduto', $this->materialProduto);
-        $stmt->bindParam(':alturaproduto', $this->alturaProduto);
-        $stmt->bindParam(':comprimentoproduto', $this->comprimentoProduto);
-        $stmt->bindParam(':larguraproduto', $this->larguraProduto);
-        $stmt->bindParam(':pesoproduto', $this->pesoProduto);
+
 
         // Executar a consulta e verificar se funcionou
         return $stmt->execute();
 
     }
     public function update($campo, $id){
-        $sql = "UPDATE $this->table SET nomeproduto = :nomeproduto, descricaoproduto = :descricaoproduto, materialproduto = :materialproduto, categoriaproduto=:categoriaproduto, alturaproduto = :alturaproduto, comprimentoproduto = :comprimentoproduto,  larguraproduto = :larguraproduto, pesoproduto = :pesoproduto WHERE $campo=:id";
+        $sql = "UPDATE $this->table SET nomeproduto = :nomeproduto, descricaoproduto = :descricaoproduto, categoriaproduto=:categoriaproduto WHERE $campo=:id";
         $stmt = $this->db->prepare($sql);
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':nomeproduto', $this->nomeProduto);
         $stmt->bindParam(':descricaoproduto', $this->descricaoProduto);
-        $stmt->bindParam(':categoriaproduto', $this->categoriaProduto);
-        $stmt->bindParam(':materialproduto', $this->materialProduto);
-        $stmt->bindParam(':alturaproduto', $this->alturaProduto);
-        $stmt->bindParam(':comprimentoproduto', $this->comprimentoProduto);
-        $stmt->bindParam(':larguraproduto', $this->larguraProduto);
-        $stmt->bindParam(':pesoproduto', $this->pesoProduto);
+        $stmt->bindParam(':categoriaproduto', $this->categoriaProduto);;
         $stmt->bindParam(":id",$id,PDO::PARAM_INT);
 
         // Executar a consulta e verificar se funcionou

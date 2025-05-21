@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
     <header>
         <?php include '_parts/_cabecalho_site.php' ?>
     </header>

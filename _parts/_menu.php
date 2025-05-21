@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
             <img src="images/ishiybom.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
@@ -17,9 +17,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="listInicial.php">Página Inicial</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="listMateriais.php">Materiais</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="listCategorias.php">Categorias</a>

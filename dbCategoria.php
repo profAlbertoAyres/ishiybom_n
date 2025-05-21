@@ -8,7 +8,7 @@ if (filter_has_var(INPUT_POST, "Gravar")):
     $idCat = filter_input(INPUT_POST, 'idCategoria');
     if (empty($idCat)):
         if ($categoria->add()):
-            echo "<script>window.alert('Adicionado com sucesso.'); window.location.href='categorias.php';</script>";
+            echo "<script>window.alert('Adicionado com sucesso.'); window.location.href='listCategorias.php';</script>";
 
         else:
             echo "<script>window.alert('Erro ao adicionar.'); window.open(document.referrer,'_self');</script>";
@@ -25,7 +25,7 @@ elseif (filter_has_var(INPUT_POST, "btnExcluir")):
     $delCat = new Categoria;
     $idCat = intval(filter_input(INPUT_POST, "idCategoria"));
     if($categoria = $delCat->delete("idCategoria", $idCat)):
-        header("location:categorias.php");
+        header("location:listCategorias.php");
     else:
         echo "<script>window.alert('Erro ao deletar.'); window.open(document.referrer,'_self');</script>";
     endif;
