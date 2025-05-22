@@ -41,7 +41,7 @@ class Produto extends CRUD{
     }
 
     public function produtoFiltro(string $campo, int $id){
-        $sql = "SELECT p.*, m.nomematerial FROM  $this->table p left join material m on p.materialproduto  = m.idmaterial where $campo = :id;" ;
+        $sql = "SELECT p.* FROM  $this->table p where $campo = :id;" ;
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id',$id, PDO::PARAM_INT);
         // Executar a consulta e verificar se funcionou

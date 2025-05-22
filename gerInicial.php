@@ -1,4 +1,6 @@
-
+<?php
+require_once "validaUser.php"
+  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,31 +13,35 @@
   <title>Gerenciar Conteúdos</title>
 </head>
 <?php
-  spl_autoload_register(function ($class) {
-    require_once "classes/{$class}.class.php";
-  });
+spl_autoload_register(function ($class) {
+  require_once "classes/{$class}.class.php";
+});
 
-  if (filter_has_var(INPUT_POST,"idInicial")) {
-    $edtIni = new Inicial;
-    $idIni = intval(filter_input(INPUT_POST, "idInicial"));
-    $inicial = $edtIni->search("idInicial",$idIni);
-  }
-  ?>
+if (filter_has_var(INPUT_POST, var_name: "idInicial")) {
+  $edtIni = new Inicial;
+  $idIni = intval(filter_input(INPUT_POST, "idInicial"));
+  $inicial = $edtIni->search("idInicial", $idIni);
+}
+?>
+
 <body>
   <header>
-    <?php include"_parts/_menu.php" ?>
+    <?php include "_parts/_menu.php" ?>
   </header>
   <main class="container">
-    <form action="<?php echo htmlspecialchars('dbInicial.php') ?>" method="post" class="row g3 mt-3" enctype="multipart/form-data">
+    <form action="<?php echo htmlspecialchars('dbInicial.php') ?>" method="post" class="row g3 mt-3"
+      enctype="multipart/form-data">
       <input type="hidden" name="idInicial" value="<?php echo $inicial->idinicial ?? ''; ?>">
       <div class="col-12 mb-3">
         <label for="nome" class="form-label">Nome</label>
-        <input type="text" name="tituloInicial" id="tituloInicial" class="form-control" placeholder="Digite o Conteúdo" value="<?php echo $inicial->tituloInicial ?? ''; ?>" required>
+        <input type="text" name="tituloInicial" id="tituloInicial" class="form-control" placeholder="Digite o Conteúdo"
+          value="<?php echo $inicial->tituloinicial ?? ''; ?>" required>
       </div>
 
       <div class="col-12 mb-3">
         <label class="form-label" for="textoInicial">Descrição</label>
-        <textarea name="textoInicial" id="textoInicial" class="form-control" required><?php echo $inicial->textoinicial ?? ''; ?></textarea>
+        <textarea name="textoInicial" id="textoInicial" class="form-control"
+          required><?php echo $inicial->textoinicial ?? ''; ?></textarea>
       </div>
 
       <div class="col-12 mb-3">
@@ -44,7 +50,7 @@
       </div>
       <div class="col-12 mb-3">
         <button type="submit" class="btn btn-primary" name="Gravar">
-        <i class="bi bi-floppy"></i> Gravar
+          <i class="bi bi-floppy"></i> Gravar
         </button>
       </div>
     </form>

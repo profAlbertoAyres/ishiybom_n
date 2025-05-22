@@ -33,9 +33,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo htmlspecialchars($_SESSION['user_name']); ?>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="alterarEmail.php">Alterar E-mail</a></li>
-                            <li><a class="dropdown-item" href="alterar_senha.php">Alterar Senha</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown"> 
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

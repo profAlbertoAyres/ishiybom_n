@@ -1,4 +1,6 @@
-
+<?php
+require_once "validaUser.php"
+    ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,7 +27,7 @@
   <header>
     <?php include"_parts/_menu.php" ?>
   </header>
-  <div class="container">
+  <main class="container">
     <form action="<?php echo htmlspecialchars('dbCategoria.php') ?>" method="post" class="row g3">
       <input type="hidden" name="idCategoria" value="<?php echo $categoria->idcategoria ?? ''; ?>">
       <div class="col-12 mb-3">
@@ -39,7 +41,7 @@
         </button>
       </div>
     </form>
-  </div>
+  </main>
   </main>
   <footer>
     <?php include "_parts/_footer.php" ?>

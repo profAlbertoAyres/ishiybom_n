@@ -1,5 +1,8 @@
+<?php
+require_once "validaUser.php"
+    ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br">  
 
 <head>
   <meta charset="UTF-8">
@@ -27,7 +30,7 @@ endif;
   <header>
     <?php include "_parts/_menu.php" ?>
   </header>
-  <div class="container mt-3">
+  <main class="container mt-3">
     <form action="<?php echo htmlspecialchars('dbProduto.php') ?>" method="post" class="row g3">
       <input type="hidden" name="idProduto" value="<?php echo $produto->idproduto ?? ''; ?>">
       <div class="col-12 mb-3">
@@ -38,12 +41,13 @@ endif;
 
       <div class="col-12 mb-3">
         <label class="form-label" for="descricaoProduto">Descrição</label>
-        <textarea name="descricaoProduto" id="descricaoProduto"
-          class="form-control" required><?php echo $produto->descricaoproduto ?? ''; ?></textarea>
+        <textarea name="descricaoProduto" id="descricaoProduto" class="form-control"
+          required><?php echo $produto->descricaoproduto ?? ''; ?></textarea>
       </div>
-      <div class="col-md-6 mb-3" >
+      <div class="col-md-6 mb-3">
         <label for="categoriaProduto">Categoria</label>
-        <select class="form-select" aria-label="Default select example" id="categoriaProduto" name="categoriaProduto" required>
+        <select class="form-select" aria-label="Default select example" id="categoriaProduto" name="categoriaProduto"
+          required>
           <option selected>Selecione uma Categoria</option>
           <?php
           $categorias = $catProd->all();
@@ -63,8 +67,8 @@ endif;
         </button>
       </div>
     </form>
-  </div>
   </main>
+
   <footer>
     <?php include "_parts/_footer.php" ?>
   </footer>

@@ -29,12 +29,24 @@ header {
     margin-left: 10px;
 }
 
+.navbar-brand, .navbar-toggler{
+    color: rgb(255 247 202);
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) saturate(100%) invert(91%) sepia(22%) saturate(343%) hue-rotate(340deg) brightness(104%) contrast(98%);
+}
+
 .nav-link:hover {
     color: rgb(255 247 202);
     font-weight: bolder;
     border-bottom: none;
 }
 
+.navbar-brand:hover{
+    color: rgb(255 247 202);
+    font-weight: bolder;
+}
 
 
 .cabecalho {

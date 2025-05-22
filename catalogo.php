@@ -105,16 +105,8 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                        <p><b>Material </b> <?php echo $prod->nomematerial;?></p>
                                             <p><b>Descrição: </b></p>
                                             <p><?php echo $prod->descricaoproduto; ?></p>
-
-                                            <ul class="list-group">
-                                                <?php
-                                                echo empty($prod->alturaproduto) ? null : "<li class='list-group-item'>Altura: $prod->alturaproduto cm.</li>";echo empty($prod->larguraproduto) ? null : "<li class='list-group-item'>Largura: $prod->larguraproduto cm.</li>";echo empty($prod->comprimentoproduto) ? null : "<li class='list-group-item'>Comprimento: $prod->comprimentoproduto cm.</li>";
-                                                echo empty($prod->pesoproduto) ? null : "<li class='list-group-item'>Peso: $prod->pesoproduto cm.</li>";
-                                                ?>
-                                            </ul>
                                             
                                         </div>
                                         <div class="modal-footer">
@@ -125,7 +117,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-
+ 
                 </section>
                 <?php
             endif;

@@ -15,7 +15,7 @@ if (filter_has_var(INPUT_POST, "Gravar")):
         endif;
     else:
         if ($categoria->update("idCategoria", $idCat, )):
-            echo "<script>window.alert('Atualizado com sucesso.'); window.location.href='categorias.php';</script>";
+            echo "<script>window.alert('Atualizado com sucesso.'); window.location.href='listCategorias.php';</script>";
 
         else:
             echo "<script>window.alert('Erro ao atualizar.'); window.open(document.referrer,'_self');</script>";
