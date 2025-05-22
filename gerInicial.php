@@ -29,31 +29,53 @@ if (filter_has_var(INPUT_POST, var_name: "idInicial")) {
     <?php include "_parts/_menu.php" ?>
   </header>
   <main class="container">
-    <form action="<?php echo htmlspecialchars('dbInicial.php') ?>" method="post" class="row g3 mt-3"
-      enctype="multipart/form-data">
-      <input type="hidden" name="idInicial" value="<?php echo $inicial->idinicial ?? ''; ?>">
-      <div class="col-12 mb-3">
-        <label for="nome" class="form-label">Nome</label>
-        <input type="text" name="tituloInicial" id="tituloInicial" class="form-control" placeholder="Digite o Conteúdo"
-          value="<?php echo $inicial->tituloinicial ?? ''; ?>" required>
+  <form action="<?php echo htmlspecialchars('dbInicial.php') ?>" method="post" enctype="multipart/form-data">
+    
+    <div class="row g-3 mt-3">
+      
+      <div class="<?php echo (isset($inicial) && !empty($inicial->imageminicial)) ? 'col-md-9' : 'col-12'; ?>">
+        <input type="hidden" name="idInicial" value="<?php echo $inicial->idinicial ?? ''; ?>">
+
+        <div class="mb-3">
+          <label for="nome" class="form-label">Título</label>
+          <input type="text" name="tituloInicial" id="tituloInicial" class="form-control"
+            placeholder="Digite o Título do conteúdo" value="<?php echo $inicial->tituloinicial ?? ''; ?>" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="textoInicial">Descrição</label>
+          <textarea name="textoInicial" id="textoInicial" class="form-control"
+            required><?php echo $inicial->textoinicial ?? ''; ?></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="imagemInicial" class="form-label">Imagem</label>
+          <input type="file" name="imagemInicial" id="imagemInicial" accept="image/*" class="form-control"
+            <?php echo (empty($inicial->idinicial)) ? 'required' : ''; ?>>
+        </div>
+
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary" name="Gravar">
+            <i class="bi bi-floppy"></i> Gravar
+          </button>
+        </div>
       </div>
 
-      <div class="col-12 mb-3">
-        <label class="form-label" for="textoInicial">Descrição</label>
-        <textarea name="textoInicial" id="textoInicial" class="form-control"
-          required><?php echo $inicial->textoinicial ?? ''; ?></textarea>
-      </div>
+      <?php if (isset($inicial) && !empty($inicial->imageminicial)): ?>
+        <div class="col-md-3 d-flex align-items-start">
+          <div>
+            <label class="form-label">Imagem Atual</label><br>
+            <img src="images/inicial/<?php echo $inicial->imageminicial; ?>" alt="Foto Atual" 
+                class="img-thumbnail mb-2" style="max-width: 100%;">
+            <input type="hidden" name="fotoAntiga" value="<?php echo $inicial->imageminicial; ?>">
+          </div>
+        </div>
+      <?php endif; ?>
 
-      <div class="col-12 mb-3">
-        <label for="imagemInicial" class="form-label">Imagem</label>
-        <input type="file" name="imagemInicial" id="imagemInicial" required accept="image/*" class="form-control">
-      </div>
-      <div class="col-12 mb-3">
-        <button type="submit" class="btn btn-primary" name="Gravar">
-          <i class="bi bi-floppy"></i> Gravar
-        </button>
-      </div>
-    </form>
+    </div>
+  </form>
+
+
   </main>
   </main>
   <footer>
