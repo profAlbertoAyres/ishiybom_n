@@ -1,4 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 :root {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -17,8 +18,8 @@ body {
     min-height: 100vh;
 }
 
-header{
-    background-color: rgb(25 75 50 );
+header {
+    background-color: rgb(25 75 50);
     font-size: 20px;
 }
 
@@ -28,7 +29,7 @@ header{
     margin-left: 10px;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: rgb(255 247 202);
     font-weight: bolder;
     border-bottom: none;
@@ -58,14 +59,16 @@ header{
 }
 
 .logo1 img {
-    width: 150px; /* Aumenta o tamanho da logo */
-    border: none; /* Remove a borda grande */
+    width: 150px;
+    /* Aumenta o tamanho da logo */
+    border: none;
+    /* Remove a borda grande */
 }
 
 /* Menu Toggle */
 .menu-toggle {
     font-size: 40px;
-    color: white;   
+    color: white;
 }
 
 .cor-menu {
@@ -78,7 +81,7 @@ main {
     flex: 1;
 }
 
-.sec-branco{
+.sec-branco {
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -86,20 +89,23 @@ main {
     border-radius: 10px;
     max-width: 1200px;
     margin: 20px auto;
-    background-color: #ffffff; /* Fundo branco */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
-    border: 1px solid #ddd; /* Borda leve */
+    background-color: #ffffff;
+    /* Fundo branco */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Sombra mais suave */
+    border: 1px solid #ddd;
+    /* Borda leve */
 }
 
 .sec-branco h2 {
-    color: rgb(25 75 50 );
+    color: rgb(25 75 50);
     font-size: 2.5rem;
     font-weight: bold;
 }
 
-footer{
+footer {
     flex: 0 0 auto;
-    background-color: rgb(25 75 50 );
+    background-color: rgb(25 75 50);
     color: rgb(255 247 202);
 }
 
@@ -111,18 +117,22 @@ footer .f-linha {
     flex-wrap: wrap;
 }
 
-footer .f-linha h3{
+footer .f-linha .visivel {
+    display: block;
+}
+
+footer .f-linha h3 {
     padding-top: 10px;
 }
 
-footer .f-linha-item{
+footer .f-linha-item {
     display: flex;
     justify-content: left;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
-footer .textolinha{
+footer .textolinha {
     padding: 0;
     display: flex;
     align-items: center;
@@ -131,22 +141,27 @@ footer .textolinha{
 
 
 footer .f-item {
-    font-size: 20px;
+    font-size: 12pt;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
 
-footer .icon{
+footer .icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-radius: 10px;
-    margin: 10px;
-    font-size: 35px;
+    margin-right: 10px;
+    font-size: 24pt;
+}
+
+footer .icon-texto {
+    display: flex;
+    align-items: center;
 }
 
 footer a {
@@ -160,22 +175,42 @@ footer a {
     background-color: rgb(0, 172, 238);
 }
 
+@media screen and (max-width: 1200px) {
+    .cabecalho{
+        padding: 0;
+    } 
+    footer .f-linha{
+        margin: 10px
+    }
+    
+}
 
 
-@media screen and (max-width: 600px){
+
+@media screen and (max-width: 600px) {
+
+    .cabecalho{
+        position: static;
+    }
     footer .f-linha {
         padding: 10px;
         flex-direction: column;
         flex-wrap: wrap;
-        font-size: 20px;
+        font-size: 12px;
+        gap: 0;
     }
+
+    footer .f-linha .visivel {
+        display: none;
+    }
+
     footer a {
         flex-direction: column;
     }
+
     footer .f-item {
         width: 100%;
         justify-items: center;
         align-items: center;
     }
 }
-

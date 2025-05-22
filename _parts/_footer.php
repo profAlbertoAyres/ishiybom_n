@@ -1,8 +1,8 @@
 
 <div class="f-linha">
-    <div class="f-item"></div>
+    <div class="f-item visivel"><hr></div>
     <div class="f-item"><h3>Contatos</h3></div>
-    <div class="f-item"></div>
+    <div class="f-item visivel"></div>
 </div>
 
 <div class="f-linha">
@@ -11,15 +11,17 @@
             <div class="icon">
                 <i class="bi bi-telephone-outbound"></i>
             </div>
-            <div>
-                <p>(69)99909-5684</p>
+            <div class="icon-texto">
+                (69)99909-5684
             </div>
         </div> 
         <div class="f-linha-item">
             <div class="icon">
                 <i class="bi bi-telephone-outbound"></i>
             </div>
-                <p class="textolinha">(69)99991-5101</p>
+            <div class="icon-texto">
+                (69)99991-5101
+            </div>
         </div> 
     </div>
     <div class="f-item">
@@ -28,9 +30,9 @@
                 <div class="icon">    
                     <i class="bi bi-facebook"></i> 
                 </div>
-                <p>
+                <div class="icon-texto visivel">
                       Agroindústria Ishiybom
-                </p>
+                </div>
             </a>
         </div>
         <div class="f-linha-item">
@@ -38,9 +40,9 @@
                 <div class="icon">    
                     <i class="bi bi-instagram"></i> 
                 </div>
-                <p>
+                <div class="icon-texto visivel">
                       Ishiybom
-                </p>
+                </div>
             </a>
         </div>
         
@@ -51,7 +53,9 @@
             <div class="icon">
                 <i class="bi bi-envelope-at"></i>
             </div>
-                <p>nogueira.jackson40@gmail.com</p>
+                <div class="icon-texto ">
+                    nogueira.jackson40@gmail.com
+                </div>
             </a>
         </div>
         <div class="f-linha-item">
@@ -59,7 +63,9 @@
                 <div class="icon">    
                 <i class="bi bi-whatsapp"></i> 
                 </div>
-                <p>Nosso Whatsapp!</p>
+                <div class="icon-texto visivel">
+                    Nosso Whatsapp!
+                </div>
             </a>
         </div>
     </div>

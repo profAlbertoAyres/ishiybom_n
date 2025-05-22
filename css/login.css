@@ -10,7 +10,6 @@ header{
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
-    gap: 10px;
 }
 
 .linha-h .item-h{
@@ -18,7 +17,7 @@ header{
 }
 
 .linha-h .item-h{
-    font-size: 30px;
+    font-size: 24pt;
     color: rgb(255 247 202);
 
 }
@@ -44,13 +43,12 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .form-login{
     background-color: rgb(25 75 50 );
     width: 500px;
-    padding: 40px;
+    padding: 30px;
     border-radius: 10px;
     color: rgb(255 247 202);
 }
@@ -58,8 +56,7 @@ main{
 .form-login p{
     text-align: center;
     font-weight: bold;
-    font-size: 25px;
-    padding: 5px;
+    font-size: 14pt;
 }
 
 .form-login button{
@@ -74,13 +71,23 @@ main{
     font-weight: bold;
 }
 
-
-@media screen and (max-width: 900px){
+@media screen and (max-width: 1200px){
+    
     .linha-h .item-h{
+        width: 300px;
+        margin: 0;
+        padding: 0;
+    }
+}
+@media screen and (max-width: 920px){
+    .linha-h .item-h{
+        font-size: 12pt;
         width: 100%;
     }
 
-    
+    .a-login{
+        justify-content: flex-start;
+    }
     .form-login{
         background-color: rgb(255 247 202);
         width: 100%;
