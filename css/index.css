@@ -5,6 +5,13 @@
     flex: 1; /* Os itens ocupam 50% da largura do flex-container */
     max-width: 50%; /* Limita a largura máxima a 50% */
     align-items: center;
+    justify-self: center;
+}
+
+.sec-branco .item .cetralizar-imagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sec-branco .item img {
@@ -12,7 +19,6 @@
     height: auto; /* Ajusta proporcionalmente */
     object-fit: cover; /* Evita distorção */
     border-radius: 8px; /* Opcional: bordas arredondadas */
-    margin: auto;
 }
 
 .sec-branco .item p{

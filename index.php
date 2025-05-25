@@ -37,7 +37,9 @@
                 <hr class="border border-success border-1 opacity-75">
                 <div class="linha">
                     <div class="item">
-                        <img src="images/inicial/<?php echo $cont->imageminicial ?>" alt="">
+                        <div class="cetralizar-imagem">
+                            <img src="images/inicial/<?php echo $cont->imageminicial ?>" alt="">
+                        </div>
                     </div>
 
                     <div class="item">
