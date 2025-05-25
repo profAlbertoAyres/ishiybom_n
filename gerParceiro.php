@@ -29,7 +29,7 @@ if (filter_has_var(INPUT_POST, "idParceiro")) {
     <?php include "_parts/_menu.php" ?>
   </header>
   <main class="container">
-    <form action="<?php echo htmlspecialchars('dbParceiro.php') ?>" method="post" class="row g3">
+    <form action="<?php echo htmlspecialchars('dbParceiro.php') ?>" method="post" class="row g3 mt-5">
       <input type="hidden" name="idParceiro" value="<?php echo $parceiro->idparceiro ?? ''; ?>">
       <div class="col-12 mb-3">
         <label for="nomeParceiro" class="form-label">Nome</label>
@@ -90,7 +90,7 @@ if (filter_has_var(INPUT_POST, "idParceiro")) {
             'TO' => 'Tocantins'
           ];
 
-          $ufSelecionada = $parceiro->ufparceiro ?? '';
+          $ufSelecionada = $parceiro->estadoparceiro ?? '';
 
           foreach ($ufs as $sigla => $nome) {
             $selected = ($ufSelecionada == $sigla) ? 'selected' : '';
@@ -113,7 +113,7 @@ if (filter_has_var(INPUT_POST, "idParceiro")) {
       </div>
 
 
-      <div class="col-12 mt-3">
+      <div class="col-12 mb-3">
         <button type="submit" class="btn btn-primary" name="Gravar">
           <i class="bi bi-floppy"></i> Gravar
         </button>
