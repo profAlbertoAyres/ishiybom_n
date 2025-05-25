@@ -21,6 +21,10 @@ $arquivo = basename($_SERVER['SCRIPT_NAME'], '.php');
             <li class="nav-item <?php echo ($arquivo == 'catalogo') ? 'active' : ''; ?>">
                 <a class="nav-link" href="catalogo.php">Produtos</a>
             </li>
+            <li class="nav-item <?php echo ($arquivo == 'catalogo') ? 'active' : ''; ?>">
+                <a class="nav-link" href="onde-encontrar.php">Onde Encontrar</a>
+            </li>
+            
             <li class="nav-item">
                 <?php if (isset($_SESSION['user_name'])): ?>
                     <!-- Usuário Logado -->

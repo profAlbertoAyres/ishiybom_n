@@ -95,7 +95,6 @@ main {
 
 .sec-branco {
     display: flex;
-    text-align: center;
     flex-direction: column;
     padding: 40px;
     border-radius: 10px;
@@ -107,6 +106,10 @@ main {
     /* Sombra mais suave */
     border: 1px solid #ddd;
     /* Borda leve */
+}
+
+.sec-branco h2{
+    text-align: center;
 }
 
 .sec-branco h2 {

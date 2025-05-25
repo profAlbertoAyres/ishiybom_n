@@ -22,6 +22,9 @@
                     <a class="nav-link" href="listCategorias.php">Categorias</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="listParceiros.php">Parceiros</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="listProdutos.php">Produtos</a>
                 </li>
             </ul>

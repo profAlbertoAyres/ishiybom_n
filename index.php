@@ -23,6 +23,9 @@
     $inicial = new Inicial;
     ?>
     <main>
+        <div style="background-color:#ccc; height:300px; display: flex; align-items: center; justify-content: center; margin-top:10px;">
+            Imagem da empresa
+        </div>
         <?php
         $conteudos = $inicial->all();
         foreach ($conteudos as $cont):

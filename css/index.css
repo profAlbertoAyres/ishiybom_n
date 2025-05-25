@@ -8,10 +8,11 @@
 }
 
 .sec-branco .item img {
-    width: 100%;
+    width: 60%;
     height: auto; /* Ajusta proporcionalmente */
     object-fit: cover; /* Evita distorção */
     border-radius: 8px; /* Opcional: bordas arredondadas */
+    margin: auto;
 }
 
 .sec-branco .item p{
