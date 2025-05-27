@@ -9,7 +9,7 @@ require_once "validaUser.php"
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/cadastros.css">
-  <?php include "_parts/_shortIcon.html" ?>
+  <?php include "_parts/_shortIcon.php" ?>
   <title>Gerenciar Parceiros</title>
 </head>
 <?php
@@ -109,7 +109,8 @@ if (filter_has_var(INPUT_POST, "idParceiro")) {
       <div class="col-12 mb-3">
         <label for="horarioParceiro" class="form-label">Horário de Funcionamento</label>
         <input type="text" name="horarioParceiro" id="horarioParceiro" class="form-control"
-          placeholder="Digite o horário de funcionamento do Parceiro" value="<?php echo $parceiro->horarioparceiro ?? ''; ?>">
+          placeholder="Digite o horário de funcionamento do Parceiro"
+          value="<?php echo $parceiro->horarioparceiro ?? ''; ?>">
       </div>
 
 
@@ -120,15 +121,14 @@ if (filter_has_var(INPUT_POST, "idParceiro")) {
       </div>
     </form>
   </main>
-  </main>
   <footer>
     <?php include "_parts/_footer.php"; ?>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="JS/mascaras.js"></script>
-<script>
+  <script>
     aplicarMascaraTelefoneTodos();
-</script>
+  </script>
 
 </body>
 

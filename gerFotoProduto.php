@@ -20,7 +20,7 @@ if (filter_has_var(INPUT_GET, "idProduto")) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/cadastros.css">
-  <?php include "_parts/_shortIcon.html" ?>
+  <?php include "_parts/_shortIcon.php" ?>
   <title>Fotos de <?php echo $produto->nomeproduto; ?></title>
 </head>
 

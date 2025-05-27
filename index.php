@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
-    <?php include "_parts/_shortIcon.html" ?>
+    <?php include "_parts/_shortIcon.php" ?>
     <title>ISHIYBOM</title>
 </head>
 
@@ -23,9 +23,7 @@
     $inicial = new Inicial;
     ?>
     <main>
-        <div style="background-color:#ccc; height:300px; display: flex; align-items: center; justify-content: center; margin-top:10px;">
-            Imagem da empresa
-        </div>
+        <img src="images/banner.png" alt="">
         <?php
         $conteudos = $inicial->all();
         foreach ($conteudos as $cont):

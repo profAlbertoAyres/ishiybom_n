@@ -12,7 +12,7 @@ require_once "validaUser.php"
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/listas.css">
     <?php include "_parts/_shortIcon.php" ?>
-    <title>Lista de Categorias</title>
+    <title>Empresa</title>
 </head>
 
 <body>
@@ -34,27 +34,27 @@ require_once "validaUser.php"
                 spl_autoload_register(function ($class) {
                     require_once "classes/{$class}.class.php";
                 });
-                $cat = new Categoria();
-                $categorias = $cat->all();
-                foreach ($categorias as $categoria):
+                $emp = new Empresa();
+                $empresas = $emp->all();
+                foreach ($empresas as $empresa):
                     ?>
                     <tr>
-                        <th scope="row"><?php echo $categoria->idcategoria ?></th>
-                        <td><?php echo $categoria->nomecategoria ?></td>
+                        <th scope="row"><?php echo $empresa->idempresa ?></th>
+                        <td><?php echo $empresa->nomeempresa ?></td>
                         <td class="form-lista">
                             <!-- Botão Editar -->
-                            <form action="<?php echo htmlspecialchars("gerCategoria.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idCategoria" value="<?php echo $categoria->idcategoria ?>">
+                            <form action="<?php echo htmlspecialchars("gerEmpresa.php") ?>" method="post" class="d-flex">
+                                <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idEmpresa ?>">
                                 <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja editar a Categoria?');">
+                                    onclick="return confirm('Tem certeza que deseja editar o Empresa?');">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                             </form>
                             <!-- Botão Exluir -->
-                            <form action="<?php echo htmlspecialchars("dbCategoria.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idCategoria" value="<?php echo $categoria->idcategoria ?>">
+                            <form action="<?php echo htmlspecialchars("dbEmpresa.php") ?>" method="post" class="d-flex">
+                                <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idEmpresa ?>">
                                 <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja excluir a Categoria?');">
+                                    onclick="return confirm('Tem certeza que deseja excluir o Empresa?');">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
@@ -65,7 +65,7 @@ require_once "validaUser.php"
 
         </table>
             <div class="mb-3">
-                <a href="gerCategoria.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Nova Categoria</a>
+                <a href="gerEmpresa.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Nova Empresa</a>
             </div>
     </main>
     <footer>
