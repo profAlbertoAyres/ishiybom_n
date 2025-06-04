@@ -81,7 +81,9 @@ endif;
                 <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail" required
                     value="<?php echo $userEdt->emailusuario ?? ''; ?>">
             </div>
-            <button type="submit" class="btn btn-primary" name="salvar">Cadastrar</button>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" name="salvar">Cadastrar</button>
+            </div>
         </form>
     </main>
     <footer>

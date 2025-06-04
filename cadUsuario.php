@@ -78,7 +78,9 @@ if (filter_has_var(INPUT_POST, "salvar")) {
           <?php } ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary" name="salvar">Cadastrar</button>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" name="salvar">Cadastrar</button>
+            </div>
         </form>
     </main>
   <footer>

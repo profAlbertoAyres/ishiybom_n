@@ -12,14 +12,14 @@ if (filter_has_var(INPUT_POST, "Gravar")):
     $idCont = filter_input(INPUT_POST, 'idContato');
     if (empty($idCont)):
         if ($contato->add()):
-            echo "<script>window.alert('Adicionado com sucesso.'); window.location.href='gercontatos.php?idEmpresa=$idEmpresa';</script>";
+            echo "<script>window.alert('Adicionado com sucesso.'); window.location.href='gerContatos.php?idEmpresa=$idEmpresa';</script>";
 
         else:
             echo "<script>window.alert('Erro ao adicionar.'); window.open(document.referrer,'_self');</script>";
         endif;
     else:
         if ($contato->update("idContato", $idCont, )):
-            echo "<script>window.alert('Atualizado com sucesso.'); window.location.href='listCategorias.php';</script>";
+            echo "<script>window.alert('Atualizado com sucesso.'); window.location.href='gerContatos.php?idEmpresa=$idEmpresa';';</script>";
 
         else:
             echo "<script>window.alert('Erro ao atualizar.'); window.open(document.referrer,'_self');</script>";
