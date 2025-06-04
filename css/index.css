@@ -1,14 +1,25 @@
 @import url('base.css');
 
 
+.imagem-banner img {
+
+    width: 100%;
+    height: auto;
+    /* Ajusta proporcionalmente */
+    object-fit: cover;
+    /* Evita distorção */
+}
+
 .sec-branco .item {
-    flex: 1; /* Os itens ocupam 50% da largura do flex-container */
-    max-width: 50%; /* Limita a largura máxima a 50% */
+    flex: 1;
+    /* Os itens ocupam 50% da largura do flex-container */
+    max-width: 50%;
+    /* Limita a largura máxima a 50% */
     align-items: center;
     justify-self: center;
 }
 
-.sec-branco .item .cetralizar-imagem{
+.sec-branco .item .cetralizar-imagem {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,42 +27,55 @@
 
 .sec-branco .item img {
     width: 60%;
-    height: auto; /* Ajusta proporcionalmente */
-    object-fit: cover; /* Evita distorção */
-    border-radius: 8px; /* Opcional: bordas arredondadas */
+    height: auto;
+    /* Ajusta proporcionalmente */
+    object-fit: cover;
+    /* Evita distorção */
+    border-radius: 8px;
+    /* Opcional: bordas arredondadas */
 }
 
-.sec-branco .item p{
+.sec-branco .item p {
     font-size: 14pt;
     text-align: justify;
     margin: 10px;
 }
 
 .linha {
-    display: flex; /* Define um flex-container */
-    align-items: center; /* Centraliza os itens verticalmente */
-    margin-bottom: 20px; /* Espaçamento entre linhas */
-    gap: 15px; /* Espaçamento entre os itens */
+    display: flex;
+    /* Define um flex-container */
+    align-items: center;
+    /* Centraliza os itens verticalmente */
+    margin-bottom: 20px;
+    /* Espaçamento entre linhas */
+    gap: 15px;
+    /* Espaçamento entre os itens */
 }
 
 .sec-branco:nth-of-type(even) .linha {
-    flex-direction: row-reverse; /* Altera a ordem das linhas pares */
+    flex-direction: row-reverse;
+    /* Altera a ordem das linhas pares */
 }
 
 
 .linha:nth-child(even) {
-    flex-direction: row-reverse; /* Inverte a posição (imagem à direita) */
+    flex-direction: row-reverse;
+    /* Inverte a posição (imagem à direita) */
 }
 
 @media (max-width: 1024px) {
     .linha {
-        flex-direction: column; /* Altera para layout em coluna */
+        flex-direction: column;
+        /* Altera para layout em coluna */
     }
 
     .sec-branco .item {
-        max-width: 100%; /* Itens ocupam 100% da largura */
+        max-width: 100%;
+        /* Itens ocupam 100% da largura */
     }
+
     .sec-branco:nth-of-type(even) .linha {
-        flex-direction: column; /* Altera a ordem das linhas pares */
+        flex-direction: column;
+        /* Altera a ordem das linhas pares */
     }
 }

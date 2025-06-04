@@ -1,6 +1,7 @@
 @import url('base.css');
 
 
+
 .linha{
     display: flex;
     flex-direction: row;
@@ -25,6 +26,7 @@
 .card-text {
     display: -webkit-box; /* Habilita o comportamento flexível */
     -webkit-line-clamp: 4; /* Limita a 4 linhas */
+    line-clamp: 4;
     -webkit-box-orient: vertical; /* Define a orientação do box */
     overflow: hidden; /* Oculta o texto que ultrapassar as 4 linhas */
     text-overflow: ellipsis; /* Adiciona "..." no final do texto excedente */

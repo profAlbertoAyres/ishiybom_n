@@ -1,7 +1,7 @@
 <?php
 require_once "validaUser.php"
     ?>
-    
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,7 +17,7 @@ require_once "validaUser.php"
 
 <body>
     <header>
-        <?php include "_parts/_menu.php"; ?>    
+        <?php include "_parts/_menu.php"; ?>
     </header>
     <main class="container mt-3 mb-3">
 
@@ -40,41 +40,46 @@ require_once "validaUser.php"
                     ?>
                     <tr>
                         <th scope="row"><?php echo $empresa->idempresa ?></th>
-                        <td><?php echo $empresa->nomeempresa ?></td>
+                        <td><?php echo $empresa->razaosoacialempresa ?></td>
                         <td class="form-lista">
                             <!-- Botão Editar -->
                             <form action="<?php echo htmlspecialchars("gerEmpresa.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idEmpresa ?>">
+                                <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idempresa ?>">
                                 <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja editar o Empresa?');">
+                                    onclick="return confirm('Tem certeza que deseja editar a Empresa?');">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                             </form>
                             <!-- Botão Exluir -->
                             <form action="<?php echo htmlspecialchars("dbEmpresa.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idEmpresa ?>">
+                                <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idempresa ?>">
                                 <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja excluir o Empresa?');">
+                                    onclick="return confirm('Tem certeza que deseja excluir a Empresa?');">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
+                            <a href="gerContatos.php?idEmpresa=<?php echo $empresa->idempresa ?>"
+                                class="btn btn-secondary"><i class="bi bi-journal-medical"></i></i></a>
                         </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
 
         </table>
+        <?php
+        if (count($empresas) == 0):
+            ?>
             <div class="mb-3">
                 <a href="gerEmpresa.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Nova Empresa</a>
+
             </div>
+        <?php endif; ?>
     </main>
     <footer>
         <?php include "_parts/_footer.php" ?>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

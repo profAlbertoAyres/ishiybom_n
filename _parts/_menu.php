@@ -1,13 +1,11 @@
-
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
             <img src="images/ishiybom.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
             ISHIYBOM
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-            aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -30,6 +28,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="listProdutos.php">Produtos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="listUsuarios.php">Usuários</a>
+                </li>
+
             </ul>
             <ul class="navbar-nav">
                 <?php if (isset($_SESSION['user_name'])): ?>
@@ -39,7 +41,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo htmlspecialchars($_SESSION['user_name']); ?>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown"> 
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

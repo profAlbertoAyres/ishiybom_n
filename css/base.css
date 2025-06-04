@@ -130,6 +130,7 @@ footer .f-linha {
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    padding: 10px;
 }
 
 footer .f-linha .visivel {
@@ -145,6 +146,7 @@ footer .f-linha-item {
     justify-content: left;
     align-items: center;
     gap: 5px;
+    width: 400px;
 }
 
 footer .textolinha {

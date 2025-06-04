@@ -1,11 +1,5 @@
 
 <div class="f-linha">
-    <div class="f-item visivel"><hr></div>
-    <div class="f-item"><h3>Contatos</h3></div>
-    <div class="f-item visivel"></div>
-</div>
-
-<div class="f-linha">
     <div class="f-item">
         <div class="f-linha-item">
             <div class="icon">

@@ -1,18 +1,11 @@
 <?php
-// script do banco de dados
-// CREATE TABLE usuario (
-//     id int NOT NULL AUTO_INCREMENT,
-//     nomeUsuario varchar(100) NOT NULL,
-//     emailUsuario varchar(100) NOT NULL,
-//     senhaUsuario varchar(200) NOT NULL,
-//     nivel_acessoUsuario int NOT NULL,
-//     PRIMARY KEY (id)
-//   ) ;
-
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 
 class Usuario extends CRUD
 {
@@ -47,21 +40,13 @@ class Usuario extends CRUD
     public function update($campo, $id)
     {
         $sql = "UPDATE $this->table 
-                  SET nomeUsuario = :nome, emailUsuario = :email, senhaUsuario = :senha, nivel_acessoUsuario = :nivel_acesso 
-                  WHERE $campo = :id";
+                  SET nomeUsuario = :nome, emailUsuario = :email, nivel_acessoUsuario = :nivel_acesso WHERE $campo = :id";
         $stmt = $this->db->prepare($sql);
-
-        try {
-            $stmt->bindParam(':nome', $this->nome, PDO::PARAM_STR);
-            $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
-            $stmt->bindParam(':senha', $this->senha, PDO::PARAM_STR);
-            $stmt->bindParam(':nivel_acesso', $this->nivel_acesso, PDO::PARAM_INT);
-            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            echo "Erro ao atualizar usuário: " . $e->getMessage();
-            return false;
-        }
+        $stmt->bindParam(':nome', $this->nome, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
+        $stmt->bindParam(':nivel_acesso', $this->nivel_acesso, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
     #Efetuar Login
@@ -124,6 +109,7 @@ class Usuario extends CRUD
 
     public function atualizarEmail($nomeUsuario, $email, $senhaAtual)
     {
+
         try {
             // Verifica se a senha atual está correta
             $sql = "SELECT senhaUsuario FROM $this->table WHERE nomeUsuario = :nomeUsuario";
@@ -175,6 +161,135 @@ class Usuario extends CRUD
             return false;
         }
     }
+
+
+
+    public function solicitarRecuperacaoSenha($email)
+    {
+        require __DIR__ . '/../PHPMailer/src/Exception.php';
+        require __DIR__ . '/../PHPMailer/src/PHPMailer.php';
+        require __DIR__ . '/../PHPMailer/src/SMTP.php';
+        try {
+            // Verifica se o e-mail está cadastrado
+            $sql = "SELECT id FROM $this->table WHERE emailUsuario = :email";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $usuario = $stmt->fetch(PDO::FETCH_OBJ);
+
+                // Gera token seguro
+                $token = bin2hex(random_bytes(32));
+                $expira_em = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+                // Insere token na tabela de recuperação
+                $sql = "INSERT INTO recuperacao_senha (id_usuario, token, expira_em) 
+                    VALUES (:id_usuario, :token, :expira_em)";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(':id_usuario', $usuario->id, PDO::PARAM_INT);
+                $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+                $stmt->bindParam(':expira_em', $expira_em, PDO::PARAM_STR);
+                $stmt->execute();
+
+                // Monta link de recuperação
+                $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+                $dominio = $_SERVER['HTTP_HOST'];
+                $caminho = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+
+                $link = "$protocolo://$dominio$caminho/reset_senha.php?token=$token";
+
+                // Configura PHPMailer
+                $mail = new PHPMailer(true);
+
+                try {
+                    $config = parse_ini_file(__DIR__ . '/../config.ini', true)['email'];
+                    // Configurações do servidor
+                    $mail->isSMTP();
+                    $mail->Host = "{$config['Host']}";
+                    $mail->SMTPAuth = $config['SMTPAuth'];
+                    $mail->Username = "{$config['Username']}";
+                    $mail->Password = "{$config['Password']}";
+                    $mail->SMTPSecure = $config['SMTPSecure'];
+                    $mail->Port = $config['Port'];
+                    $mail->CharSet = 'UTF-8';
+
+                    // Remetente e destinatário
+                    $mail->setFrom('betoprogramar@gmail.com', 'Nome do Sistema');
+                    $mail->addAddress($email);
+
+                    // Conteúdo
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Recuperação de Senha';
+                    $mail->Body = "
+                    <p>Olá,</p>
+                    <p>Recebemos uma solicitação para redefinir sua senha.</p>
+                    <p>Clique no link abaixo para criar uma nova senha:</p>
+                    <p><a href='$link'>$link</a></p>
+                    <p>Este link expira em 1 hora.</p>
+                    <p>Se você não solicitou isso, ignore este e-mail.</p>
+                ";
+
+                    $mail->AltBody = "Olá,\n\nAcesse o link para redefinir sua senha: $link\n\nEste link expira em 1 hora.";
+
+                    $mail->send();
+                    return true;
+
+                } catch (Exception $e) {
+                    error_log("Erro ao enviar e-mail: {$mail->ErrorInfo}");
+                    return false;
+                }
+
+            } else {
+                return false; // E-mail não encontrado
+            }
+
+        } catch (PDOException $e) {
+            error_log('Erro em solicitarRecuperacaoSenha: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+
+    public function redefinirSenha($token, $novaSenha)
+    {
+        try {
+            // Verifica o token
+            $sql = "SELECT id_usuario, expira_em FROM recuperacao_senha WHERE token = :token";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $dados = $stmt->fetch(PDO::FETCH_OBJ);
+
+                if (strtotime($dados->expira_em) >= time()) {
+                    // Atualiza a senha
+                    $novaSenhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
+                    $sql = "UPDATE $this->table SET senhaUsuario = :novaSenha WHERE id = :id_usuario";
+                    $stmt = $this->db->prepare($sql);
+                    $stmt->bindParam(':novaSenha', $novaSenhaHash, PDO::PARAM_STR);
+                    $stmt->bindParam(':id_usuario', $dados->id_usuario, PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    // Remove o token usado
+                    $sql = "DELETE FROM recuperacao_senha WHERE token = :token";
+                    $stmt = $this->db->prepare($sql);
+                    $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+                    $stmt->execute();
+
+                    return true;
+                } else {
+                    return false; // Token expirado
+                }
+            } else {
+                return false; // Token inválido
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
 
 
     public function getId()

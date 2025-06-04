@@ -268,4 +268,12 @@ class Empresa extends CRUD{
         // Executar a consulta e verificar se funcionou
         return $stmt->execute();
     }
+
+    public function last(string $campo) {
+        $sql = "SELECT * FROM $this->table ORDER BY $campo DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->rowCount() > 0 ? $stmt->fetch(PDO::FETCH_OBJ) : null;
+    }
+
 }

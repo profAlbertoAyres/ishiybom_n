@@ -46,7 +46,7 @@ require_once "validaUser.php"
         <main>
 
             <div class="container mt-5">
-                <h1>Bem-vindo, <?php echo $userId . ' - ' . htmlspecialchars($userName); ?>!</h1>
+                <h1>Bem-vindo</h1>
                 <p>Você está acessando o sistema como: <strong><?php echo $accessLevel; ?></strong></p>
                 
                 <div class="mt-4">

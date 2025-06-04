@@ -26,7 +26,7 @@ if (filter_has_var(INPUT_POST, "logar")) {
     <header class="cabecalho">
         <div class="linha-h">
             <div class="item-h">
-                <a href="">Sobre nós</a>
+                <a href="index.php">Home</a>
             </div>
             <div class="item-h">
                 <img src="images/ishiybom.png" alt="">
@@ -50,6 +50,9 @@ if (filter_has_var(INPUT_POST, "logar")) {
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn " name="logar">Entrar</button>
+                </div>
+                <div class="mt-3">
+                    <a href="redefinir_senha.php" class="text-light">Esqueceu a senha?</a>
                 </div>
             </form>
         </div>

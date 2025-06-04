@@ -23,7 +23,9 @@
     $inicial = new Inicial;
     ?>
     <main>
-        <img src="images/banner.png" alt="">
+        <div class="imagem-banner">
+            <img src="images/banner.png" alt="">
+        </div>
         <?php
         $conteudos = $inicial->all();
         foreach ($conteudos as $cont):

@@ -19,8 +19,9 @@ spl_autoload_register(function ($class) {
 
 if (filter_has_var(INPUT_POST, "idEmpresa")) {
   $edtEmp = new Empresa;
-  $idPar = intval(filter_input(INPUT_POST, "idEmpresa"));
+  $idEmp = intval(filter_input(INPUT_POST, "idEmpresa"));
   $empresa = $edtEmp->search("idEmpresa", $idEmp);
+  print_r($empresa);
 }
 ?>
 
@@ -29,12 +30,12 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
     <?php include "_parts/_menu.php" ?>
   </header>
   <main class="container">
-    <form action="<?php echo htmlspecialchars('dbEmpresa.php') ?>" method="post" class="row g3 mt-5">
-      <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idEmpresa ?? ''; ?>">
+    <form action="<?php echo htmlspecialchars('dbEmpresa.php') ?>" method="post" class="row g3 mt-5" enctype="multipart/form-data">
+      <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idempresa ?? ''; ?>">
       <div class="col-md-6 mb-3">
         <label for="razaoSocialEmpresa" class="form-label">Razão Social</label>
         <input type="text" name="razaoSocialEmpresa" id="razaoSocialEmpresa" class="form-control"
-          placeholder="Digite o Empresa" value="<?php echo $empresa->razaosocialempresa ?? ''; ?>" required>
+          placeholder="Digite o Empresa" value="<?php echo $empresa->razaosoacialempresa ?? ''; ?>" required>
       </div>
 
       <div class="col-md-6 mb-3">
@@ -46,17 +47,17 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
       <div class="col-md-6 mb-3">
         <label for="enderecoEmpresa" class="form-label">Endereço</label>
         <input type="text" name="enderecoEmpresa" id="enderecoEmpresa" class="form-control"
-          placeholder="Digite o endereço do Empresa" value="<?php echo $empresa->enderecoEmpresa ?? ''; ?>">
+          placeholder="Digite o endereço da Empresa" value="<?php echo $empresa->enderecoempresa ?? ''; ?>">
       </div>
       <div class="col-md-6 mb-3">
         <label for="bairroEmpresa" class="form-label">Bairro</label>
         <input type="text" name="bairroEmpresa" id="bairroEmpresa" class="form-control"
-          placeholder="Digite o Bairro do Empresa" value="<?php echo $empresa->bairroEmpresa ?? ''; ?>">
+          placeholder="Digite o Bairro da Empresa" value="<?php echo $empresa->bairroempresa ?? ''; ?>">
       </div>
       <div class="col-md-8 mb-3">
         <label for="cidadeEmpresa" class="form-label">Cidade</label>
         <input type="text" name="cidadeEmpresa" id="cidadeEmpresa" class="form-control"
-          placeholder="Digite o cidade do Empresa" value="<?php echo $empresa->cidadeEmpresa ?? ''; ?>">
+          placeholder="Digite o cidade da Empresa" value="<?php echo $empresa->cidadeempresa ?? ''; ?>">
       </div>
 
       <div class="col-md-4 mb-3">
@@ -94,7 +95,7 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
             'TO' => 'Tocantins'
           ];
 
-          $ufSelecionada = $empresa->estadoEmpresa ?? '';
+          $ufSelecionada = $empresa->estadoempresa ?? '';
 
           foreach ($ufs as $sigla => $nome) {
             $selected = ($ufSelecionada == $sigla) ? 'selected' : '';
@@ -143,27 +144,27 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
       </div>
 
       <!-- Logos -->
-      <?php if (isset($inicial) && !empty($inicial->imageminicial)): ?>
-        <div class="col-md-3 d-flex align-items-start">
-          <div>
-            <label class="form-label">Imagem Atual</label><br>
-            <img src="images/inicial/<?php echo $inicial->imageminicial; ?>" alt="Foto Atual" class="img-thumbnail mb-2"
-              style="max-width: 100%;">
-            <input type="hidden" name="fotoAntiga" value="<?php echo $inicial->imageminicial; ?>">
+      <div class="col-12 m-b3">
+        <div>
+          
+          <label for="logoPequenoEmpresa" class="form-label">Logo grande</label>
+          <input type="file" name="logoPequenoEmpresa" id="logoPequenoEmpresa" accept="image/*" class="form-control"
+          <?php echo (empty($inicial->idinicial)) ? 'required' : ''; ?>>
+          <?php if (isset($empresa) && !empty($empresa->logopequenoempresa)): ?>
+            <input type="hidden" name="fotoAntigaPequena" value="<?php echo $empresa->logopequenoempresa; ?>">
+            <?php endif; ?>
           </div>
         </div>
-      <?php endif; ?>
 
-      <?php if (isset($inicial) && !empty($inicial->imageminicial)): ?>
-        <div class="col-md-3 d-flex align-items-start">
-          <div>
-            <label class="form-label">Imagem Atual</label><br>
-            <img src="images/inicial/<?php echo $inicial->imageminicial; ?>" alt="Foto Atual" 
-                class="img-thumbnail mb-2" style="max-width: 100%;">
-            <input type="hidden" name="fotoAntiga" value="<?php echo $inicial->imageminicial; ?>">
-          </div>
+        <div class="col-12 mb-3">
+          <label for="logoGrandeEmpresa" class="form-label">Logo grande</label>
+          <input type="file" name="logoGrandeEmpresa" id="logoGrandeEmpresa" accept="image/*" class="form-control"
+          <?php echo (empty($inicial->idinicial)) ? 'required' : ''; ?>>
+          <?php if (isset($empresa) && !empty($empresa->logograndeempresa)): ?>
+            <input type="hidden" name="fotoAntiga" value="<?php echo $empresa->logograndeempresa; ?>">
+            <?php endif; ?>
+
         </div>
-      <?php endif; ?>
 
       <div class="col-12 mb-3">
         <button type="submit" class="btn btn-primary" name="Gravar">
