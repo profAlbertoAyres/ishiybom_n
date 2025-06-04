@@ -21,7 +21,6 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
   $edtEmp = new Empresa;
   $idEmp = intval(filter_input(INPUT_POST, "idEmpresa"));
   $empresa = $edtEmp->search("idEmpresa", $idEmp);
-  print_r($empresa);
 }
 ?>
 
@@ -161,7 +160,7 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
           <input type="file" name="logoGrandeEmpresa" id="logoGrandeEmpresa" accept="image/*" class="form-control"
           <?php echo (empty($empresa->logograndeempresa)) ? 'required' : ''; ?>>
           <?php if (isset($empresa) && !empty($empresa->logograndeempresa)): ?>
-            <input type="hidden" name="fotoAntiga" value="<?php echo $empresa->logograndeempresa; ?>">
+            <input type="hidden" name="fotoAntigaGrande" value="<?php echo $empresa->logograndeempresa; ?>">
             <?php endif; ?>
 
         </div>

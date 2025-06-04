@@ -6,8 +6,8 @@ $empresa = new Empresa();
 if (filter_has_var(INPUT_POST, "Gravar")):
     $diretorio = 'images/empresa/';
     // Logo Pequena
-    $fotoAntigaPequeno = filter_input(INPUT_POST, 'fotoAntigaPequena');
-    $empresa->setLogoPequenoEmpresa($fotoAntigaPequeno);
+    $fotoAntigaPequena = filter_input(INPUT_POST, 'fotoAntigaPequena');
+    $empresa->setLogoPequenoEmpresa($fotoAntigaPequena);
     if (!is_dir($diretorio)) {
         die("O diretório '$diretorio' não existe.");
     }
@@ -19,8 +19,8 @@ if (filter_has_var(INPUT_POST, "Gravar")):
         $nomeArquivo = uniqid() . '.' . $extensao;
         $caminhoArquivo = $diretorio . $nomeArquivo;
 
-        if (file_exists($diretorio . $fotoAntigaPequeno)) {
-            unlink($diretorio . $fotoAntigaPequeno); // Apaga a foto antiga
+        if (file_exists($diretorio . $fotoAntigaPequena)) {
+            unlink($diretorio . $fotoAntigaPequena); // Apaga a foto antiga
         }
 
         if (!move_uploaded_file($arquivo['tmp_name'], $caminhoArquivo)) {
