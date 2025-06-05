@@ -162,6 +162,14 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
             <?php endif; ?>
 
         </div>
+        <div class="col-12 mb-3">
+          <label for="bannerEmpresa" class="form-label">Banner página inicial</label>
+          <input type="file" name="bannerEmpresa" id="bannerEmpresa" accept="image/*" class="form-control">
+          <?php if (isset($empresa) && !empty($empresa->bannerempresa)): ?>
+            <input type="hidden" name="fotoAntigaBanner" value="<?php echo $empresa->bannerempresa; ?>">
+            <?php endif; ?>
+
+        </div>
 
       <div class="col-12 mb-3">
         <button type="submit" class="btn btn-primary" name="Gravar">

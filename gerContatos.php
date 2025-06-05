@@ -4,12 +4,14 @@ spl_autoload_register(function ($class) {
   require_once "classes/{$class}.class.php";
 });
 
-if (filter_has_var(INPUT_GET, "idEmpresa")) {
-  $emp = new Empresa();
+if (filter_has_var(INPUT_POST, "btnEditar")) {
+
   $cont = new Contato();
-  $idEmp = intval(filter_input(INPUT_GET, "idEmpresa"));
-  $empresa = $emp->search("idEmpresa", $idEmp);
-  $contatosEmpresa = $cont->allContato($idEmp);
+  $idContato = intval(filter_input(INPUT_POST, "idContato"));
+  $contato = $cont->search("idcontato", $idContato);
+  $idEmp = $contato->idempresa ?? '';
+}elseif(filter_has_var(INPUT_POST, "btnNovoContato")){
+  $idEmp = intval(filter_input(INPUT_POST,'idEmpresa'));
 }
 ?>
 <!DOCTYPE html>
@@ -28,17 +30,18 @@ if (filter_has_var(INPUT_GET, "idEmpresa")) {
   <header>
     <?php include "_parts/_menu.php" ?>
   </header>
-  <main class="container">
-    <form action="<?php echo htmlspecialchars('dbContato.php') ?>" method="post" class="row g3 mb-3">
-      <input type="hidden" name="idEmpresa" value="<?php echo $empresa->idempresa ?? ''; ?>">
-      <div class="col-md-4 mb-3">
+  <main class="container mb-3">
+    <form action="<?php echo htmlspecialchars('dbContato.php') ?>" method="post" class="row g3 mt-3">
+      <input type="hidden" name="idEmpresa" value="<?php echo  $idEmp; ?>">
+      <input type="hidden" name="idContato" value="<?php echo $contato->idcontato ?? ''; ?>">
+      <div class="col-md-6 mb-3">
         <label for="tipoContato" class="form-label">Tipo</label>
         <select class="form-select" id="tipoContato" name="tipoContato" required>
           <option value="">Selecione o tipo...</option>
           <?php
           $tipos = ['Celular', 'E-mail', 'Rede Social', 'Site', 'Telefone', 'WhatsApp'];
 
-          $tipoSelecionado = $cont->tipo ?? '';
+          $tipoSelecionado = $contato->tipocontato ?? '';
 
           foreach ($tipos as $tipo) { ?>
             <option value="<?= $tipo ?>" <?= ($tipoSelecionado == $tipo) ? 'selected' : '' ?>>
@@ -47,22 +50,32 @@ if (filter_has_var(INPUT_GET, "idEmpresa")) {
           <?php } ?>
         </select>
       </div>
-      <div class="col-md-4 mb-3">
+      <div class="col-md-6 mb-3">
         <label for="informacaoContato" class="form-label">Informção</label>
-        <input type="text" name="informacaoContato" id="informacaoContato" class="form-control" value="1">
+        <input type="text" name="informacaoContato" id="informacaoContato" class="form-control" value="<?php echo $contato->informacaocontato ?? ''; ?>">
       </div>
-      <div class="col-md-4 mb-3">
-        <label for="informacaoContato" class="form-label">Exibir no Rodapé</label>
-        <div class="form-conttrol">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rodape" id="Sim" value="Sim">
-            <label class="form-check-label" for="Sim" >Sim</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="rodape" id="Nao" value="Não">
-            <label class="form-check-label" for="Nao">Não</label>
-          </div>
-        </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="tipoContato" class="form-label">Exibir no rodapé</label>
+        <select class="form-select" id="rodapeRontato" name="rodapeRontato" required>
+          <option value="">Selecione se deseja exibir...</option>
+          <?php
+          $exibir_radope = ['Sim', 'Não'];
+
+          $radapeSelecionado = $contato->rodapecontato ?? '';
+
+          foreach ($exibir_radope as $option) { ?>
+            <option value="<?= $option ?>" <?= ($radapeSelecionado == $option) ? 'selected' : '' ?>>
+              <?= $option ?>
+            </option>
+          <?php } ?>
+        </select>
+      </div>
+
+      <?php  ?>
+      <div class="col-md-6 mb-3">
+        <label for="odermRodapeRontato" class="form-label">Ordem no Rodapé</label>
+        <input type="number" name="odermRodapeRontato" id="odermRodapeRontato" class="form-control"  value="<?php echo $contato->odermrodapecontato ?? ''; ?>">
       </div>
       <div class="col-12 mb-3">
         <button type="submit" class="btn btn-primary" name="Gravar">
@@ -70,51 +83,14 @@ if (filter_has_var(INPUT_GET, "idEmpresa")) {
         </button>
       </div>
     </form>
-    <div class="mt-3">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Informção</th>
-            <th scope="col">Rodapé</th>
-            <th scope="col">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          foreach ($contatosEmpresa as $contato):
-            ?>
-            <tr>
-              <td><?php echo $contato->idcontato ?></td>
-              <td><?php echo $contato->tipocontato ?></td>
-              <td><?php echo $contato->informacaocontato ?></td>
-              <td><?php echo $contato->rodapecontato ?></td>
-              <td>
-                <form action="<?php echo htmlspecialchars("dbContato.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idContato" value="<?php echo $contato->idcontato ?>">
-                                <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja excluir o Contato?');">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
-              </td>
-            </tr>
-
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-    </div>
+    
   </main>
   <footer>
     <?php include "_parts/_footer.php" ?>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script src="JS/mascaras.js"></script>
-  <script>
-    aplicarMascaraTelefoneTodos();
-  </script>
+  
 </body>
 
 </html>

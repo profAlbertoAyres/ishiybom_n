@@ -20,13 +20,19 @@
     spl_autoload_register(function ($class) {
         require_once "classes/{$class}.class.php";
     });
-    $inicial = new Inicial;
+    $inicial = new Inicial();
+    $empresa = new Empresa();
+    $empresa = $emp->last("idEmpresa");
     ?>
     <main>
+        <?php
+            if(!empty($empresa->bannerempresa)):
+        ?>
         <div class="imagem-banner">
-            <img src="images/banner.png" alt="">
+            <img src="images/empresa/<?php echo $empresa->bannerempresa; ?>" alt="Banner com o Logotipo da Ishiybom de Cacoal">
         </div>
         <?php
+        endif;
         $conteudos = $inicial->all();
         foreach ($conteudos as $cont):
             $campo = 'categoriaproduto';

@@ -60,7 +60,7 @@ require_once "validaUser.php"
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
-                            <a href="gerContatos.php?idEmpresa=<?php echo $empresa->idempresa ?>"
+                            <a href="listContatos.php?idEmpresa=<?php echo $empresa->idempresa ?>"
                                 class="btn btn-secondary"><i class="bi bi-journal-medical"></i></i></a>
                         </td>
                     </tr>

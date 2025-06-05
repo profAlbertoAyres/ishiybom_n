@@ -15,6 +15,7 @@ class Empresa extends CRUD{
     private $valoresEmpresa;
     private $logoPequenoEmpresa;
     private $logoGrandeEmpresa;
+    private $bannerEmpresa;
     private $horarioEmpresa;
     private $localizacaoEmpresa;
 
@@ -191,6 +192,18 @@ class Empresa extends CRUD{
         return $this;
     }
     
+    public function getBannerEmpresa()
+    {
+        return $this->bannerEmpresa;
+    }
+
+  
+    public function setBannerEmpresa($bannerEmpresa)
+    {
+        $this->bannerEmpresa = $bannerEmpresa;
+        return $this;
+    }
+    
     public function getHorarioEmpresa()
     {
         return $this->horarioEmpresa;
@@ -219,7 +232,7 @@ class Empresa extends CRUD{
 
     public function add(){
         // SQL de inserção
-        $sql = "INSERT INTO $this->table (razaosocialempresa,nomefantasiaempresa, enderecoempresa, bairroempresa, cidadeEmpresa, estadoempresa, historiaempresa, visaoempresa, missaoempresa, logopequenoempresa, logograndeempresa, valoresempresa, localizacaoempresa, horarioempresa) VALUES (:razaosocialempresa, :nomefantasiaempresa, :enderecoempresa, :bairroempresa, :cidadeempresa,  :estadoempresa, :historiaempresa, :visaoempresa, :missaoempresa, :logopequenoempresa, :logograndeempresa, :valoresempresa, :localizacaoempresa, :horarioempresa)";
+        $sql = "INSERT INTO $this->table (razaosocialempresa,nomefantasiaempresa, enderecoempresa, bairroempresa, cidadeEmpresa, estadoempresa, historiaempresa, visaoempresa, missaoempresa, logopequenoempresa, logograndeempresa, valoresempresa, , bannerempresalocalizacaoempresa, horarioempresa) VALUES (:razaosocialempresa, :nomefantasiaempresa, :enderecoempresa, :bairroempresa, :cidadeempresa,  :estadoempresa, :historiaempresa, :visaoempresa, :missaoempresa, :logopequenoempresa, :logograndeempresa, :valoresempresa, :bannerempresa, :localizacaoempresa, :horarioempresa)";
 
         // Preparar a declaração usando a classe Database
         $stmt = $this->db->prepare($sql);
@@ -237,6 +250,7 @@ class Empresa extends CRUD{
         $stmt->bindParam(':valoresempresa', $this->valoresEmpresa);
         $stmt->bindParam(':logopequenoempresa', $this->logoPequenoEmpresa);
         $stmt->bindParam(':logograndeempresa', $this->logoGrandeEmpresa);
+        $stmt->bindParam(':bannerempresa', $this->bannerEmpresa);
         $stmt->bindParam(':localizacaoempresa', $this->localizacaoEmpresa);
         $stmt->bindParam(':horarioempresa', $this->horarioEmpresa);
 
@@ -246,7 +260,7 @@ class Empresa extends CRUD{
 
     }
     public function update($campo, $id){
-        $sql = "UPDATE $this->table SET razaosocialEmpresa=:razaosocialEmpresa, nomefantasiaempresa=:nomefantasiaempresa,enderecoempresa=:enderecoempresa, bairroempresa=:bairroempresa, cidadeempresa=:cidadeempresa, estadoempresa=:estadoempresa, historiaempresa=:historiaempresa, visaoempresa=:visaoempresa, missaoempresa=:missaoempresa, valoresempresa=:valoresempresa, logopequenoempresa = :logopequenoempresa, logograndeempresa=:logograndeempresa, localizacaoempresa=:localizacaoempresa, horarioempresa=:horarioempresa  WHERE $campo=:idEmpresa";
+        $sql = "UPDATE $this->table SET razaosocialEmpresa=:razaosocialEmpresa, nomefantasiaempresa=:nomefantasiaempresa,enderecoempresa=:enderecoempresa, bairroempresa=:bairroempresa, cidadeempresa=:cidadeempresa, estadoempresa=:estadoempresa, historiaempresa=:historiaempresa, visaoempresa=:visaoempresa, missaoempresa=:missaoempresa, valoresempresa=:valoresempresa, logopequenoempresa = :logopequenoempresa, logograndeempresa=:logograndeempresa, bannerempresa=:bannerempresa, localizacaoempresa=:localizacaoempresa, horarioempresa=:horarioempresa  WHERE $campo=:idEmpresa";
         $stmt = $this->db->prepare($sql);
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':razaosocialEmpresa', $this->razaoSocialEmpresa);
@@ -261,6 +275,7 @@ class Empresa extends CRUD{
         $stmt->bindParam(':valoresempresa', $this->valoresEmpresa);
         $stmt->bindParam(':logopequenoempresa', $this->logoPequenoEmpresa);
         $stmt->bindParam(':logograndeempresa', $this->logoGrandeEmpresa);
+        $stmt->bindParam(':bannerempresa', $this->bannerEmpresa);
         $stmt->bindParam(':localizacaoempresa', $this->localizacaoEmpresa);
         $stmt->bindParam(':horarioempresa', $this->horarioEmpresa);
         $stmt->bindParam(':idEmpresa', $id);

@@ -178,7 +178,7 @@
                             break;
 
                     }
-                    echo $valor;
+                    echo html_entity_decode($valor);
 
                     ?>
                     <p><strong>Horário:</strong> <?php echo $empresa->horarioempresa ?></p>

@@ -8,52 +8,73 @@ class Contato extends CRUD
     private $tipoContato;
     private $informacaoContato;
     private $rodapeContato;
+    private $ordemRodapeContato;
 
-    public function setIdContato($idContato){
+    public function setIdContato($idContato)
+    {
         $this->idContato = $idContato;
     }
 
-    public function getIdContato(){
+    public function getIdContato()
+    {
         return $this->idContato;
     }
 
-    public function setIdEmpresa($idEmpresa){
+    public function setIdEmpresa($idEmpresa)
+    {
         $this->idEmpresa = $idEmpresa;
     }
 
-    public function getIdEmpresa(){
+    public function getIdEmpresa()
+    {
         return $this->idEmpresa;
     }
 
-    public function setTipoContato($tipoContato){
+    public function setTipoContato($tipoContato)
+    {
         $this->tipoContato = $tipoContato;
     }
 
-    public function getTipoContato(){
+    public function getTipoContato()
+    {
         return $this->tipoContato;
     }
 
-    public function setInformacaoContato($informacaoContato){
+    public function setInformacaoContato($informacaoContato)
+    {
         $this->informacaoContato = $informacaoContato;
     }
 
-    public function getInformacaoContato(){
+    public function getInformacaoContato()
+    {
         return $this->informacaoContato;
     }
 
-    public function setRodapeContato($rodapeContato){
+    public function setRodapeContato($rodapeContato)
+    {
         $this->rodapeContato = $rodapeContato;
     }
 
-    public function getRodapeContato(){
+    public function getRodapeContato()
+    {
         return $this->rodapeContato;
+    }
+
+    public function setOrdemRodapeContato($ordemRodapeContato)
+    {
+        $this->ordemRodapeContato = $ordemRodapeContato;
+    }
+
+    public function getOrdemRodapeContato()
+    {
+        return $this->ordemRodapeContato;
     }
 
     public function add()
     {
         // SQL de inserção
-        $sql = "INSERT INTO $this->table (idempresa, tipocontato, informacaocontato, rodapecontato) 
-         VALUES (:idempresa, :tipocontato, :informacaocontato, :rodapecontato)";
+        $sql = "INSERT INTO $this->table (idempresa, tipocontato, informacaocontato, rodapecontato, odermrodapecontato) 
+         VALUES (:idempresa, :tipocontato, :informacaocontato, :rodapecontato, :odermrodapecontato)";
         // Preparar a declaração usando a classe Database
         $stmt = $this->db->prepare($sql);
         // Atribuir os valores aos parâmetros
@@ -61,15 +82,29 @@ class Contato extends CRUD
         $stmt->bindParam(':tipocontato', $this->tipoContato);
         $stmt->bindParam(':informacaocontato', $this->informacaoContato);
         $stmt->bindParam(':rodapecontato', $this->rodapeContato);
+        $stmt->bindParam(':odermrodapecontato', $this->ordemRodapeContato);
 
         // Executar a consulta e verificar se funcionou
         return $stmt->execute();
     }
-    public function update($campo, $id)
+    public function update(string $campo, int $id)
     {
+        $sql = "UPDATE $this->table SET idempresa=:idempresa, tipocontato= :tipocontato, informacaocontato=:informacaocontato, rodapecontato=:rodapecontato, odermrodapecontato=:odermrodapecontato WHERE $campo=:id";
+        // Preparar a declaração usando a classe Database
+        $stmt = $this->db->prepare($sql);
+        // Atribuir os valores aos parâmetros
+        $stmt->bindParam(':idempresa', $this->idEmpresa);
+        $stmt->bindParam(':tipocontato', $this->tipoContato);
+        $stmt->bindParam(':informacaocontato', $this->informacaoContato);
+        $stmt->bindParam(':rodapecontato', $this->rodapeContato);
+        $stmt->bindParam(':odermrodapecontato', $this->ordemRodapeContato);
+        $stmt->bindParam(':id', $id);
+
+        // Executar a consulta e verificar se funcionou
+        return $stmt->execute();
     }
 
-    public function allContato(int $id, string $tipo="")
+    public function allContato(int $id, string $tipo = "")
     {
         $sql = "SELECT * FROM  $this->table WHERE idEmpresa = :idEmp and tipocontato like '%{$tipo}'";
         $stmt = $this->db->prepare($sql);
@@ -78,7 +113,4 @@ class Contato extends CRUD
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-
-
-    
 }

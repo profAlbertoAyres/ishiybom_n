@@ -51,6 +51,30 @@ if (filter_has_var(INPUT_POST, "Gravar")):
         }
         $empresa->setLogoGrandeEmpresa( $nomeArquivo);
     }
+
+    // Banner
+    $fotoAntigaBanner = filter_input(INPUT_POST, 'fotoAntigaBanner');
+    $empresa->setBannerEmpresa($fotoAntigaBanner);
+    if (!is_dir($diretorio)) {
+        die("O diretório '$diretorio' não existe.");
+    }
+
+    if (isset($_FILES['bannerEmpresa']) && $_FILES['bannerEmpresa']['error'] === UPLOAD_ERR_OK) {
+        $arquivo = $_FILES['bannerEmpresa'];
+
+        $extensao = strtolower(pathinfo(basename($arquivo['name']), PATHINFO_EXTENSION));
+        $nomeArquivo = uniqid() . '.' . $extensao;
+        $caminhoArquivo = $diretorio . $nomeArquivo;
+
+        if (is_file($diretorio.$fotoAntigaBanner)) {
+            unlink($diretorio . $fotoAntigaBanner); // Apaga a foto antiga
+        }
+
+        if (!move_uploaded_file($arquivo['tmp_name'], $caminhoArquivo)) {
+            die("Erro ao mover o arquivo.");
+        }
+        $empresa->setBannerEmpresa( $nomeArquivo);
+    }
     $empresa->setRazaoSocialEmpresa(filter_input(INPUT_POST, 'razaoSocialEmpresa'));
     $empresa->setNomeFantasiaEmpresa(filter_input(INPUT_POST, 'nomeFantasiaEmpresa'));
     $empresa->setEnderecoEmpresa(filter_input(INPUT_POST, 'enderecoEmpresa'));
