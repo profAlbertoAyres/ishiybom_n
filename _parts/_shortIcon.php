@@ -1,1 +1,9 @@
-<link rel="shortcut icon" href="images/ishiybom.png" type="image/x-icon">
+ <?php
+    spl_autoload_register(function ($class) {
+        require_once "classes/{$class}.class.php";
+    });
+    $emp = new Empresa();
+    $empresa = $emp->last("idEmpresa");
+    $logopequena = $empresa->logpequenooempresa;
+    ?>
+<link rel="shortcut icon" href="images/empresa/<?php echo $logopequena;?>" type="image/x-icon">

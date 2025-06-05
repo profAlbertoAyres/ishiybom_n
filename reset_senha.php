@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <a href="index.php">Home</a>
             </div>
             <div class="item-h">
-                <img src="images/ishiybom.png" alt="">
+                <img src="images/empresa/<?php echo $logopequena;?>" alt="">
             </div>
             <div class="item-h icon-user"><i class="bi bi-person-fill-x"></i></div>
         </div>

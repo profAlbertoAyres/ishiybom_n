@@ -8,7 +8,8 @@ require_once "validaUser.php"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/listas.css">
+    <link rel="stylesheet" href="css/listas.css">
+    <?php include "_parts/_shortIcon.php" ?>
     <title>Dashboard</title>
 </head>
 
@@ -39,7 +40,7 @@ require_once "validaUser.php"
     ?>
 
     <header>
-    <?php include '_parts/_menu.php'?>
+        <?php include '_parts/_menu.php' ?>
     </header>
 
     <body>
@@ -48,14 +49,14 @@ require_once "validaUser.php"
             <div class="container mt-5">
                 <h1>Bem-vindo</h1>
                 <p>Você está acessando o sistema como: <strong><?php echo $accessLevel; ?></strong></p>
-                
+
                 <div class="mt-4">
                     <a href="logout.php" class="btn btn-danger">Sair</a>
                 </div>
             </div>
         </main>
         <footer>
-            <?php require_once "_parts/_footer.php";?>
+            <?php require_once "_parts/_footer.php"; ?>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

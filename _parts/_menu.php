@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
-            <img src="images/ishiybom.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            <img src="images/empresa/<?php echo $logopequena;?>" alt="" width="30" height="24" class="d-inline-block align-text-top">
             ISHIYBOM
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"

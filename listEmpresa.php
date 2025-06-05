@@ -25,7 +25,8 @@ require_once "validaUser.php"
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome</th>
+                    <th scope="col">Razão Social</th>
+                    <th scope="col">Nome Fantasia</th>
                     <th scope="col">Açoes</th>
                 </tr>
             </thead>
@@ -40,7 +41,8 @@ require_once "validaUser.php"
                     ?>
                     <tr>
                         <th scope="row"><?php echo $empresa->idempresa ?></th>
-                        <td><?php echo $empresa->razaosoacialempresa ?></td>
+                        <td><?php echo $empresa->razaosocialempresa ?></td>
+                        <td><?php echo $empresa->nomefantasiaempresa ?></td>
                         <td class="form-lista">
                             <!-- Botão Editar -->
                             <form action="<?php echo htmlspecialchars("gerEmpresa.php") ?>" method="post" class="d-flex">

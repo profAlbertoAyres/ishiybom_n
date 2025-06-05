@@ -15,6 +15,9 @@ if (filter_has_var(INPUT_POST, "logar")) {
         require_once "classes/{$class}.class.php";
     });
     $usuario = new Usuario;
+    $emp = new Empresa();
+    $empresa = $emp->last("idEmpresa");
+    $logo = $empresa->logograndeempresa;
     $usuario->setNome(filter_input(INPUT_POST, 'nome'));
     $usuario->setSenha(filter_input(INPUT_POST, 'senha'));
     $mensagem = $usuario->login();
@@ -29,7 +32,7 @@ if (filter_has_var(INPUT_POST, "logar")) {
                 <a href="index.php">Home</a>
             </div>
             <div class="item-h">
-                <img src="images/ishiybom.png" alt="">
+                <img src="images/empresa/<?php echo $logo ?>" alt="">
             </div>
             <div class="item-h icon-user"><i class="bi bi-person-fill-x"></i></div>
         </div>

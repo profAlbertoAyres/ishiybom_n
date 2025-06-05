@@ -34,7 +34,7 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
       <div class="col-md-6 mb-3">
         <label for="razaoSocialEmpresa" class="form-label">Razão Social</label>
         <input type="text" name="razaoSocialEmpresa" id="razaoSocialEmpresa" class="form-control"
-          placeholder="Digite o Empresa" value="<?php echo $empresa->razaosoacialempresa ?? ''; ?>" required>
+          placeholder="Digite o Empresa" value="<?php echo $empresa->razaosocialempresa ?? ''; ?>" required>
       </div>
 
       <div class="col-md-6 mb-3">
@@ -147,8 +147,7 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
         <div>
           
           <label for="logoPequenoEmpresa" class="form-label">Logo grande</label>
-          <input type="file" name="logoPequenoEmpresa" id="logoPequenoEmpresa" accept="image/*" class="form-control"
-          <?php echo (empty($empresa->logpequenooempresa)) ? 'required' : ''; ?>>
+          <input type="file" name="logoPequenoEmpresa" id="logoPequenoEmpresa" accept="image/*" class="form-control">
           <?php if (isset($empresa) && !empty($empresa->logopequenoempresa)): ?>
             <input type="hidden" name="fotoAntigaPequena" value="<?php echo $empresa->logopequenoempresa; ?>">
             <?php endif; ?>
@@ -157,8 +156,7 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
 
         <div class="col-12 mb-3">
           <label for="logoGrandeEmpresa" class="form-label">Logo grande</label>
-          <input type="file" name="logoGrandeEmpresa" id="logoGrandeEmpresa" accept="image/*" class="form-control"
-          <?php echo (empty($empresa->logograndeempresa)) ? 'required' : ''; ?>>
+          <input type="file" name="logoGrandeEmpresa" id="logoGrandeEmpresa" accept="image/*" class="form-control">
           <?php if (isset($empresa) && !empty($empresa->logograndeempresa)): ?>
             <input type="hidden" name="fotoAntigaGrande" value="<?php echo $empresa->logograndeempresa; ?>">
             <?php endif; ?>

@@ -186,7 +186,7 @@
                 </div>
                 <div class="item">
                     <div class="img-centro">
-                        <img src="images/ishiybom.png" alt="">
+                        <img src="images/empresa/<?php echo $empresa->logograndeempresa ?>" alt="">
                     </div>
                 </div>
 
@@ -202,7 +202,7 @@
             <section class="sec-branco">
                 <h2>Como chegar</h2>
                 <?php
-                echo $empresa->localizacaoempresa;
+                echo html_entity_decode($empresa->localizacaoempresa);
                 ?>
 
 

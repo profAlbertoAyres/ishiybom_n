@@ -18,15 +18,14 @@ if (filter_has_var(INPUT_POST, "Gravar")):
         $extensao = strtolower(pathinfo(basename($arquivo['name']), PATHINFO_EXTENSION));
         $nomeArquivo = uniqid() . '.' . $extensao;
         $caminhoArquivo = $diretorio . $nomeArquivo;
-
-        if (file_exists($diretorio . $fotoAntigaPequena)) {
+        if(file_exists($fotoAntigaPequena) && is_dir($diretorio)) {
             unlink($diretorio . $fotoAntigaPequena); // Apaga a foto antiga
         }
 
         if (!move_uploaded_file($arquivo['tmp_name'], $caminhoArquivo)) {
             die("Erro ao mover o arquivo.");
         }
-        $empresa->setLogoPequenoEmpresa(filter_input(INPUT_POST, $nomeArquivo));
+        $empresa->setLogoPequenoEmpresa($nomeArquivo);
     }
 
     // Logo Grande
@@ -43,14 +42,14 @@ if (filter_has_var(INPUT_POST, "Gravar")):
         $nomeArquivo = uniqid() . '.' . $extensao;
         $caminhoArquivo = $diretorio . $nomeArquivo;
 
-        if (file_exists($diretorio . $fotoAntigaGrande)) {
+        if (file_exists($fotoAntigaGrande) && is_dir($diretorio)) {
             unlink($diretorio . $fotoAntigaGrande); // Apaga a foto antiga
         }
 
         if (!move_uploaded_file($arquivo['tmp_name'], $caminhoArquivo)) {
             die("Erro ao mover o arquivo.");
         }
-        $empresa->setLogoGrandeEmpresa(filter_input(INPUT_POST, $nomeArquivo));
+        $empresa->setLogoGrandeEmpresa( $nomeArquivo);
     }
     $empresa->setRazaoSocialEmpresa(filter_input(INPUT_POST, 'razaoSocialEmpresa'));
     $empresa->setNomeFantasiaEmpresa(filter_input(INPUT_POST, 'nomeFantasiaEmpresa'));
@@ -62,7 +61,7 @@ if (filter_has_var(INPUT_POST, "Gravar")):
     $empresa->setMissaoEmpresa(filter_input(INPUT_POST, 'missaoEmpresa'));
     $empresa->setVisaoEmpresa(filter_input(INPUT_POST, 'visaoEmpresa'));
     $empresa->setValoresEmpresa(filter_input(INPUT_POST, 'valoresEmpresa'));
-    $empresa->setlocalizacaoEmpresa(filter_input(INPUT_POST, 'localizacaoEmpresa'));
+    $empresa->setlocalizacaoEmpresa(htmlspecialchars(filter_input(INPUT_POST, 'localizacaoEmpresa')));
     $empresa->setHorarioEmpresa(filter_input(INPUT_POST, 'horarioEmpresa'));
     $idEmp = filter_input(INPUT_POST, 'idEmpresa');
     if (empty($idEmp)):
@@ -74,7 +73,7 @@ if (filter_has_var(INPUT_POST, "Gravar")):
         endif;
     else:
         if ($empresa->update("idEmpresa", $idEmp, )):
-            echo "<script>window.alert('Atualizado com sucesso.'); window.location.href='listParceiros.php';</script>";
+            echo "<script>window.alert('Atualizado com sucesso.'); window.location.href='listEmpresa.php';</script>";
 
         else:
             echo "<script>window.alert('Erro ao atualizar.'); window.open(document.referrer,'_self');</script>";
