@@ -219,7 +219,7 @@ class Empresa extends CRUD{
 
     public function add(){
         // SQL de inserção
-        $sql = "INSERT INTO $this->table (razaosocialempresa,nomefantasiaempresa, enderecoempresa, bairroempresa, cidadeEmpresa, estadoempresa, historiaempresa, visaoempresa, missaoempresa, logpequenooempresa, logograndeempresa, valoresempresa, localizacaoempresa, horarioempresa) VALUES (:razaosocialempresa, :nomefantasiaempresa, :enderecoempresa, :bairroempresa, :cidadeempresa,  :estadoempresa, :historiaempresa, :visaoempresa, :missaoempresa, :logpequenooempresa, :logograndeempresa, :valoresempresa, :localizacaoempresa, :horarioempresa)";
+        $sql = "INSERT INTO $this->table (razaosocialempresa,nomefantasiaempresa, enderecoempresa, bairroempresa, cidadeEmpresa, estadoempresa, historiaempresa, visaoempresa, missaoempresa, logopequenoempresa, logograndeempresa, valoresempresa, localizacaoempresa, horarioempresa) VALUES (:razaosocialempresa, :nomefantasiaempresa, :enderecoempresa, :bairroempresa, :cidadeempresa,  :estadoempresa, :historiaempresa, :visaoempresa, :missaoempresa, :logopequenoempresa, :logograndeempresa, :valoresempresa, :localizacaoempresa, :horarioempresa)";
 
         // Preparar a declaração usando a classe Database
         $stmt = $this->db->prepare($sql);
@@ -235,7 +235,7 @@ class Empresa extends CRUD{
         $stmt->bindParam(':visaoempresa', $this->visaoEmpresa);
         $stmt->bindParam(':missaoempresa', $this->missaoEmpresa);
         $stmt->bindParam(':valoresempresa', $this->valoresEmpresa);
-        $stmt->bindParam(':logpequenooempresa', $this->logoPequenoEmpresa);
+        $stmt->bindParam(':logopequenoempresa', $this->logoPequenoEmpresa);
         $stmt->bindParam(':logograndeempresa', $this->logoGrandeEmpresa);
         $stmt->bindParam(':localizacaoempresa', $this->localizacaoEmpresa);
         $stmt->bindParam(':horarioempresa', $this->horarioEmpresa);
@@ -246,7 +246,7 @@ class Empresa extends CRUD{
 
     }
     public function update($campo, $id){
-        $sql = "UPDATE $this->table SET razaosocialEmpresa=:razaosocialEmpresa, nomefantasiaempresa=:nomefantasiaempresa,enderecoempresa=:enderecoempresa, bairroempresa=:bairroempresa, cidadeempresa=:cidadeempresa, estadoempresa=:estadoempresa, historiaempresa=:historiaempresa, visaoempresa=:visaoempresa, missaoempresa=:missaoempresa, valoresempresa=:valoresempresa, logpequenooempresa = :logpequenooempresa, logograndeempresa=:logograndeempresa, localizacaoempresa=:localizacaoempresa, horarioempresa=:horarioempresa  WHERE $campo=:idEmpresa";
+        $sql = "UPDATE $this->table SET razaosocialEmpresa=:razaosocialEmpresa, nomefantasiaempresa=:nomefantasiaempresa,enderecoempresa=:enderecoempresa, bairroempresa=:bairroempresa, cidadeempresa=:cidadeempresa, estadoempresa=:estadoempresa, historiaempresa=:historiaempresa, visaoempresa=:visaoempresa, missaoempresa=:missaoempresa, valoresempresa=:valoresempresa, logopequenoempresa = :logopequenoempresa, logograndeempresa=:logograndeempresa, localizacaoempresa=:localizacaoempresa, horarioempresa=:horarioempresa  WHERE $campo=:idEmpresa";
         $stmt = $this->db->prepare($sql);
         // Atribuir os valores aos parâmetros
         $stmt->bindParam(':razaosocialEmpresa', $this->razaoSocialEmpresa);
@@ -259,7 +259,7 @@ class Empresa extends CRUD{
         $stmt->bindParam(':visaoempresa', $this->visaoEmpresa);
         $stmt->bindParam(':missaoempresa', $this->missaoEmpresa);
         $stmt->bindParam(':valoresempresa', $this->valoresEmpresa);
-        $stmt->bindParam(':logpequenooempresa', $this->logoPequenoEmpresa);
+        $stmt->bindParam(':logopequenoempresa', $this->logoPequenoEmpresa);
         $stmt->bindParam(':logograndeempresa', $this->logoGrandeEmpresa);
         $stmt->bindParam(':localizacaoempresa', $this->localizacaoEmpresa);
         $stmt->bindParam(':horarioempresa', $this->horarioEmpresa);

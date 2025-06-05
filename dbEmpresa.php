@@ -18,8 +18,8 @@ if (filter_has_var(INPUT_POST, "Gravar")):
         $extensao = strtolower(pathinfo(basename($arquivo['name']), PATHINFO_EXTENSION));
         $nomeArquivo = uniqid() . '.' . $extensao;
         $caminhoArquivo = $diretorio . $nomeArquivo;
-        if(file_exists($fotoAntigaPequena) && is_dir($diretorio)) {
-            unlink($diretorio . $fotoAntigaPequena); // Apaga a foto antiga
+        if(is_file($diretorio.$fotoAntigaPequena)) {
+            unlink($diretorio.$fotoAntigaPequena); // Apaga a foto antiga
         }
 
         if (!move_uploaded_file($arquivo['tmp_name'], $caminhoArquivo)) {
@@ -42,7 +42,7 @@ if (filter_has_var(INPUT_POST, "Gravar")):
         $nomeArquivo = uniqid() . '.' . $extensao;
         $caminhoArquivo = $diretorio . $nomeArquivo;
 
-        if (file_exists($fotoAntigaGrande) && is_dir($diretorio)) {
+        if (is_file($diretorio.$fotoAntigaGrande)) {
             unlink($diretorio . $fotoAntigaGrande); // Apaga a foto antiga
         }
 

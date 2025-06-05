@@ -146,7 +146,7 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
       <div class="col-12 m-b3">
         <div>
           
-          <label for="logoPequenoEmpresa" class="form-label">Logo grande</label>
+          <label for="logoPequenoEmpresa" class="form-label">Logo pequeno</label>
           <input type="file" name="logoPequenoEmpresa" id="logoPequenoEmpresa" accept="image/*" class="form-control">
           <?php if (isset($empresa) && !empty($empresa->logopequenoempresa)): ?>
             <input type="hidden" name="fotoAntigaPequena" value="<?php echo $empresa->logopequenoempresa; ?>">

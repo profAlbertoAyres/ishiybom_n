@@ -4,6 +4,6 @@
     });
     $emp = new Empresa();
     $empresa = $emp->last("idEmpresa");
-    $logopequena = $empresa->logpequenooempresa;
+    $logopequena = $empresa->logopequenoempresa;
     ?>
 <link rel="shortcut icon" href="images/empresa/<?php echo $logopequena;?>" type="image/x-icon">
