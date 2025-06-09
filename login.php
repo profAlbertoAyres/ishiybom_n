@@ -55,7 +55,7 @@ if (filter_has_var(INPUT_POST, "logar")) {
                     <button type="submit" class="btn " name="logar">Entrar</button>
                 </div>
                 <div class="mt-3">
-                    <a href="redefinir_senha.php" class="text-light">Esqueceu a senha?</a>
+                    <a href="redefinir_senha.php" >Esqueceu a senha?</a>
                 </div>
             </form>
         </div>

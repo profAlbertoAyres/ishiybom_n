@@ -71,6 +71,11 @@ main{
     font-weight: bold;
 }
 
+.form-login a{
+    text-decoration: dashed;
+    color: white;
+}
+
 @media screen and (max-width: 1200px){
     
     .linha-h .item-h{
@@ -101,6 +106,10 @@ main{
         color: rgb(255 247 202);
         background-color: rgb(25 75 50 );
     }
+    .form-login a{
+    text-decoration: dashed;
+    color: black;
+}
 
 
 }
