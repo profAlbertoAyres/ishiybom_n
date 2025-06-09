@@ -116,7 +116,7 @@ class Contato extends CRUD
 
     public function exibirRodape(int $id)
     {
-        $sql = "SELECT * FROM  $this->table WHERE idEmpresa = :idEmp and rodapecontato like 'Sim' order by odermrodapecontato ";
+        $sql = "SELECT * FROM  $this->table WHERE idEmpresa = :idEmp and rodapecontato like 'Sim' order by ordemrodapecontato ";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':idEmp', $id, PDO::PARAM_INT);
         // Executar a consulta e verificar se funcionou

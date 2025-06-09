@@ -71,6 +71,7 @@
 
     .sec-branco .item {
         max-width: 100%;
+        width: 100%;
         /* Itens ocupam 100% da largura */
     }
 

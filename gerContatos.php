@@ -75,7 +75,7 @@ if (filter_has_var(INPUT_POST, "btnEditar")) {
       <?php  ?>
       <div class="col-md-6 mb-3">
         <label for="odermRodapeRontato" class="form-label">Ordem no Rodapé</label>
-        <input type="number" name="odermRodapeRontato" id="odermRodapeRontato" class="form-control"  value="<?php echo $contato->odermrodapecontato ?? null; ?>">
+        <input type="number" name="odermRodapeRontato" id="odermRodapeRontato" class="form-control"  value="<?php echo $contato->ordemrodapecontato ?? null; ?>">
       </div>
       <div class="col-12 mb-3">
         <button type="submit" class="btn btn-primary" name="Gravar">

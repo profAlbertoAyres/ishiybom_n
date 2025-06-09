@@ -81,10 +81,6 @@ if (filter_has_var(INPUT_POST, "Gravar")):
     $empresa->setBairroEmpresa(filter_input(INPUT_POST, 'bairroEmpresa'));
     $empresa->setCidadeEmpresa(filter_input(INPUT_POST, 'cidadeEmpresa'));
     $empresa->setEstadoEmpresa(filter_input(INPUT_POST, 'estadoEmpresa'));
-    $empresa->setHistoriaEmpresa(filter_input(INPUT_POST, 'historiaEmpresa'));
-    $empresa->setMissaoEmpresa(filter_input(INPUT_POST, 'missaoEmpresa'));
-    $empresa->setVisaoEmpresa(filter_input(INPUT_POST, 'visaoEmpresa'));
-    $empresa->setValoresEmpresa(filter_input(INPUT_POST, 'valoresEmpresa'));
     $empresa->setlocalizacaoEmpresa(htmlspecialchars(filter_input(INPUT_POST, 'localizacaoEmpresa')));
     $empresa->setHorarioEmpresa(filter_input(INPUT_POST, 'horarioEmpresa'));
     $idEmp = filter_input(INPUT_POST, 'idEmpresa');

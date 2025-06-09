@@ -105,31 +105,6 @@ if (filter_has_var(INPUT_POST, "idEmpresa")) {
       </div>
 
       <div class="col-12 mb-3">
-        <label for="historiaEmpresa" class="form-label">História</label>
-        <textarea type="text" name="historiaEmpresa" id="historiaEmpresa" class="form-control"
-          placeholder="Digite a história da empresa"
-          rows="3"><?php echo $empresa->historiaempresa ?? null; ?></textarea>
-      </div>
-
-      <div class="col-12 mb-3">
-        <label for="missaoEmpresa" class="form-label">Missão</label>
-        <textarea type="text" name="missaoEmpresa" id="missaoEmpresa" class="form-control" rows="3"
-          placeholder="Digite a missão da empresa"><?php echo $empresa->missaoempresa ?? ''; ?></textarea>
-      </div>
-
-      <div class="col-12 mb-3">
-        <label for="visaoEmpresa" class="form-label">Visão</label>
-        <textarea type="text" name="visaoEmpresa" id="visaoEmpresa" class="form-control" rows="3"
-          placeholder="Digite a vosão da empresa"><?php echo $empresa->visaoempresa ?? ''; ?></textarea>
-      </div>
-
-      <div class="col-12 mb-3">
-        <label for="valoresEmpresa" class="form-label">Valores</label>
-        <textarea type="text" name="valoresEmpresa" id="valoresEmpresa" class="form-control" rows="3"
-          placeholder="Digite os valores da empresa"><?php echo $empresa->valoresempresa ?? ''; ?></textarea>
-      </div>
-
-      <div class="col-12 mb-3">
         <label for="localizacaoEmpresa" class="form-label">Localização</label>
         <input type="text" name="localizacaoEmpresa" id="localizacaoEmpresa" class="form-control"
           placeholder="Cole a Localização do Google Maps" value="<?php echo $empresa->localizacaoempresa ?? ''; ?>">

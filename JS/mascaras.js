@@ -1,6 +1,8 @@
+// Pega os elementos do DOM
 const tipoContato = document.getElementById('tipoContato');
-let informacaoInput = document.getElementById('informacaoContato');
+const informacaoInput = document.getElementById('informacaoContato');
 
+// Função para formatar um número como telefone
 function formatarTelefone(value) {
   value = value.replace(/\D/g, '');
   if (value.length > 11) value = value.slice(0, 11);
@@ -29,27 +31,40 @@ function formatarTelefone(value) {
   return formatted;
 }
 
+// Função para aplicar máscara de telefone
 function aplicarMascaraTelefone(input) {
+  // Formata valor inicial (caso tenha vindo do banco)
   input.value = formatarTelefone(input.value);
 
-  input.addEventListener('input', function () {
+  // Remove event listeners antigos (se houver) — boa prática
+  input.removeEventListener('input', onTelefoneInput);
+
+  // Função que será chamada no evento input
+  function onTelefoneInput() {
     input.value = formatarTelefone(input.value);
-  });
+  }
+
+  // Adiciona o event listener
+  input.addEventListener('input', onTelefoneInput);
+
+  // Guarda referência da função para permitir remoção no futuro, se precisar
+  input._onTelefoneInput = onTelefoneInput;
 }
 
+// Função principal que verifica o tipo e aplica as máscaras
 function verificaTipoEAplicaMascara() {
   const tipo = tipoContato.value;
 
-  // Remove a classe telefone e event listeners anteriores
+  // Remove classe de telefone sempre que muda o tipo
   informacaoInput.classList.remove('telefone');
 
-  // Clonar e substituir para remover event listeners antigos
-  const novoInput = informacaoInput.cloneNode(true);
-  informacaoInput.parentNode.replaceChild(novoInput, informacaoInput);
+  // Se já tinha um event listener de telefone, remove
+  if (informacaoInput._onTelefoneInput) {
+    informacaoInput.removeEventListener('input', informacaoInput._onTelefoneInput);
+    delete informacaoInput._onTelefoneInput;
+  }
 
-  // Atualiza referência
-  informacaoInput = document.getElementById('informacaoContato');
-
+  // Configura o campo conforme o tipo selecionado
   if (tipo === 'Telefone' || tipo === 'Celular' || tipo === 'WhatsApp') {
     informacaoInput.setAttribute('type', 'text');
     informacaoInput.classList.add('telefone');
@@ -58,14 +73,18 @@ function verificaTipoEAplicaMascara() {
   } else if (tipo === 'E-mail') {
     informacaoInput.setAttribute('type', 'email');
     informacaoInput.placeholder = 'Digite o e-mail';
+    // O valor vindo do banco continua visível
   } else {
     informacaoInput.setAttribute('type', 'text');
     informacaoInput.placeholder = 'Digite a informação';
+    // O valor vindo do banco continua visível
   }
 }
 
+// Quando a página carregar, já configura o campo corretamente (para casos de edição)
 document.addEventListener('DOMContentLoaded', () => {
   verificaTipoEAplicaMascara();
 });
 
+// Quando o usuário trocar o tipo, atualiza o campo
 tipoContato.addEventListener('change', verificaTipoEAplicaMascara);

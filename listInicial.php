@@ -26,6 +26,7 @@ require_once "validaUser.php"
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Título</th>
+                        <th scope="col">Ordem</th>
                         <th scope="col">Açoes</th>
                     </tr>
                 </thead>
@@ -41,6 +42,7 @@ require_once "validaUser.php"
                         <tr>
                             <th scope="row"><?php echo $conteudo->idinicial ?></th>
                             <td><?php echo $conteudo->tituloinicial ?></td>
+                            <td><?php echo $conteudo->ordeminicial ?></td>
                             <td class="form-lista">
                                 <!-- Botão Editar -->
                                 <form action="<?php echo htmlspecialchars("gerInicial.php") ?>" method="post"

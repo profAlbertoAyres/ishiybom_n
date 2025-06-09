@@ -33,26 +33,31 @@ if (filter_has_var(INPUT_POST, var_name: "idInicial")) {
     
     <div class="row g-3 mt-3">
       
-      <div class="<?php echo (isset($inicial) && !empty($inicial->imageminicial)) ? 'col-md-9' : 'col-12'; ?>">
+      <div class="row <?php echo (isset($inicial) && !empty($inicial->imageminicial)) ? 'col-md-9' : 'col-12'; ?>">
         <input type="hidden" name="idInicial" value="<?php echo $inicial->idinicial ?? ''; ?>">
 
-        <div class="mb-3">
+        <div class="mb-3 col-12">
           <label for="nome" class="form-label">Título</label>
           <input type="text" name="tituloInicial" id="tituloInicial" class="form-control"
             placeholder="Digite o Título do conteúdo" value="<?php echo $inicial->tituloinicial ?? ''; ?>" required>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 col-12">
           <label class="form-label" for="textoInicial">Descrição</label>
           <textarea name="textoInicial" id="textoInicial" class="form-control"
             required><?php echo $inicial->textoinicial ?? ''; ?></textarea>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 col-md-9">
           <label for="imagemInicial" class="form-label">Imagem</label>
           <input type="file" name="imagemInicial" id="imagemInicial" accept="image/*" class="form-control"
             <?php echo (empty($inicial->idinicial)) ? 'required' : ''; ?>>
         </div>
+
+        <div class="col-md-3 mb-3">
+        <label for="ordemInicial" class="form-label">Ordem de exibição</label>
+        <input type="number" name="ordemInicial" id="ordemInicial" class="form-control"  value="<?php echo $inicial->ordeminicial ?? null; ?>">
+      </div>
 
         <div class="mb-3">
           <button type="submit" class="btn btn-primary" name="Gravar">

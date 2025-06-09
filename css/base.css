@@ -248,10 +248,18 @@ footer a {
         align-items: center;
         gap: 5px;
         width: 100%;
+        flex-direction: row;
+        text-align: center;
     }
 
     footer a {
-        flex-direction: row;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* ícone em cima, texto embaixo */
+        min-width: 150px;
+        /* opcional — ajuda a todos ficarem parecidos */
     }
 
     footer .f-item {

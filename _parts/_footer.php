@@ -8,8 +8,6 @@ $idEmp = $empresa->idempresa;
 $cont = new Contato();
 $contatos = $cont->exibirRodape($idEmp);
 
-$limitecoluna = count($contatos) / 3;
-$limitecoluna = ceil($limitecoluna);
 ?>
 <div class="container-xl f-linha">
     <?php
@@ -45,7 +43,7 @@ $limitecoluna = ceil($limitecoluna);
                 $soNumeros = preg_replace('/\D/', '', $con->informacaocontato);
                 $icone = '<i class="bi bi-whatsapp"></i>';
                 $link = 'https://wa.me/55'.$soNumeros;
-                $texto = 'Nosso WhatasApp!';
+                $texto = 'Nosso WhatsApp!';
                 $op_target = 'target="_blank"';
                 break;
             case 'Rede Social':
@@ -62,7 +60,7 @@ $limitecoluna = ceil($limitecoluna);
                 } elseif (strpos($con->informacaocontato, 'linkedin.com') !== false) {
                     $icone .= '<i class="bi bi-linkedin"></i>';
                     $op_target = 'target="_blank"';
-                    $link = 'tel:+55' . $con->informacaocontato;
+                    $link = $con->informacaocontato;
                     $texto = 'Ishiybom';
                 }
                 break;

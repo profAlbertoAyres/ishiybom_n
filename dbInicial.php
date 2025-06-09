@@ -30,6 +30,7 @@ if (filter_has_var(INPUT_POST, "Gravar")):
 
     $inicial->settItuloInicial(filter_input(INPUT_POST, 'tituloInicial'));
     $inicial->setTextoInicial(filter_input(INPUT_POST, 'textoInicial'));
+    $inicial->setOrderInicial(filter_input(INPUT_POST, 'ordemInicial'));
     // $inicial->setImagemInicial($nomeArquivo);
     $idIni = filter_input(INPUT_POST, 'idInicial');
     if (empty($idIni)):

@@ -33,7 +33,7 @@
         </div>
         <?php
         endif;
-        $conteudos = $inicial->all();
+        $conteudos = $inicial->allOrder();
         foreach ($conteudos as $cont):
             $campo = 'categoriaproduto';
             ?>
@@ -49,8 +49,8 @@
                     </div>
 
                     <div class="item">
-                        <p>
-                            <?php echo $cont->textoinicial ?>
+                        <p style="text-align: justify;">
+                            <?php echo nl2br($cont->textoinicial) ?>
                         </p>
                     </div>
                 </div>

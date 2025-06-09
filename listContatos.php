@@ -56,7 +56,7 @@ require_once "validaUser.php"
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <?php echo $contato->odermrodapecontato != 0 ? $contato->odermrodapecontato : null ?>
+                                <?php echo $contato->ordemrodapecontato != 0 ? $contato->ordemrodapecontato : null ?>
                             </td>
                             <td class="d-flex justify-content-center align-items-center gap-2">
                                 <form action="<?php echo htmlspecialchars("gerContatos.php") ?>" method="post"
@@ -99,9 +99,9 @@ require_once "validaUser.php"
                                 <strong>Informação:</strong> <?php echo $contato->informacaocontato ?>
                             <?php endif; ?>
                         </p>
-                        <?php if ($contato->odermrodapecontato != 0): ?>
+                        <?php if ($contato->ordemrodapecontato != 0): ?>
                             <p class="card-text"><small class="text-muted">Ordem rodapé:
-                                    <?php echo $contato->odermrodapecontato ?></small></p>
+                                    <?php echo $contato->ordemrodapecontato ?></small></p>
                         <?php endif; ?>
                         <div class="d-flex justify-content-between">
                             <form action="<?php echo htmlspecialchars("gerContatos.php") ?>" method="post" class="d-inline">

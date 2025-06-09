@@ -6,12 +6,13 @@ class Inicial extends CRUD{
     private $tituloInicial;
     private $textoInicial;
     private $imagemInicial;
+    private $ordemInicial;
     private $ativoInicial;
 
 
     public function add(){
 
-        $sql = "INSERT INTO $this->table (tituloinicial, textoinicial, imageminicial) VALUES (:tituloinicial, :textoinicial, :imageminicial)";
+        $sql = "INSERT INTO $this->table (tituloinicial, textoinicial, imageminicial, ordemInicial) VALUES (:tituloinicial, :textoinicial, :imageminicial, :ordemInicial)";
 
         // Preparar a declaração usando a classe Database
         $stmt = $this->db->prepare($sql);
@@ -20,13 +21,14 @@ class Inicial extends CRUD{
         $stmt->bindParam(':tituloinicial', $this->tituloInicial);
         $stmt->bindParam(':textoinicial', $this->textoInicial);
         $stmt->bindParam(':imageminicial', $this->imagemInicial);
+        $stmt->bindParam(':ordemInicial', $this->ordemInicial);
 
         // Executar a consulta e verificar se funcionou
         return $stmt->execute();
 
     }
     public function update($field, $id){
-        $sql = "UPDATE $this->table SET tituloinicial = :tituloinicial, textoinicial = :textoinicial, imageminicial = :imageminicial WHERE idinicial= :id";
+        $sql = "UPDATE $this->table SET tituloinicial = :tituloinicial, textoinicial = :textoinicial, imageminicial = :imageminicial, ordemInicial=:ordeminicial WHERE idinicial= :id";
 
         // Preparar a declaração usando a classe Database
         $stmt = $this->db->prepare($sql);
@@ -35,11 +37,22 @@ class Inicial extends CRUD{
         $stmt->bindParam(':tituloinicial', $this->tituloInicial);
         $stmt->bindParam(':textoinicial', $this->textoInicial);
         $stmt->bindParam(':imageminicial', $this->imagemInicial);
+        $stmt->bindParam(':ordeminicial', $this->ordemInicial);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         // Executar a consulta e verificar se funcionou
         return $stmt->execute();
     }
+
+
+    public function allOrder() {
+        $sql = "SELECT * FROM $this->table where ativoinicial = 1 order by ordeminicial";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
 
     /**
      * Get the value of idInicial
@@ -124,6 +137,22 @@ class Inicial extends CRUD{
     /**
      * Get the value of ativoInicial
      */ 
+    public function getOrderInicial()
+    {
+        return $this->ordemInicial;
+    }
+
+    /**
+     * Set the value of ordeminicial
+     *
+     * @return  self
+     */ 
+    public function setOrderInicial($orderInicial)
+    {
+        $this->ordemInicial = $orderInicial;
+
+        return $this;
+    }
     public function getAtivoInicial()
     {
         return $this->ativoInicial;
