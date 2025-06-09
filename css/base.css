@@ -29,7 +29,8 @@ header {
     margin-left: 10px;
 }
 
-.navbar-brand, .navbar-toggler{
+.navbar-brand,
+.navbar-toggler {
     color: rgb(255 247 202);
 }
 
@@ -43,7 +44,7 @@ header {
     border-bottom: none;
 }
 
-.navbar-brand:hover{
+.navbar-brand:hover {
     color: rgb(255 247 202);
     font-weight: bolder;
 }
@@ -108,7 +109,7 @@ main {
     /* Borda leve */
 }
 
-.sec-branco h2{
+.sec-branco h2 {
     text-align: center;
 }
 
@@ -127,7 +128,7 @@ footer {
 footer .f-linha {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     padding: 10px;
@@ -193,25 +194,45 @@ footer a {
 }
 
 @media screen and (max-width: 1200px) {
-    .cabecalho{
+    .cabecalho {
         padding: 0;
-    } 
-    footer .f-linha{
+    }
+
+    footer .f-linha-item {
+        width: 300px;
+    }
+
+    footer .f-linha {
         margin: 10px
     }
-    
+
+}
+
+@media screen and (max-width: 1200px) {
+    .cabecalho {
+        padding: 0;
+    }
+
+    footer .f-linha-item {
+        width: 300px;
+    }
+
+    footer .f-linha {
+        margin: 10px
+    }
+
 }
 
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 620px) {
 
-    .cabecalho{
+    .cabecalho {
         position: static;
     }
+
     footer .f-linha {
-        padding: 10px;
-        flex-direction: column;
+        padding: 0;
         flex-wrap: wrap;
         font-size: 12px;
         gap: 0;
@@ -221,8 +242,16 @@ footer a {
         display: none;
     }
 
+    footer .f-linha-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+    }
+
     footer a {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     footer .f-item {

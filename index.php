@@ -29,7 +29,7 @@
             if(!empty($empresa->bannerempresa)):
         ?>
         <div class="imagem-banner">
-            <img src="images/empresa/<?php echo $empresa->bannerempresa; ?>" alt="Banner com o Logotipo da Ishiybom de Cacoal">
+            <img src="images/empresa/<?php echo $empresa->bannerempresa; ?>" alt="Banner com o Logotipo da Ishiybom de Cacoal" class="img-fluid">
         </div>
         <?php
         endif;
@@ -39,7 +39,7 @@
             ?>
             <section class="sec-branco">
 
-                <h2><?php echo $cont->tituloinicial ?></h2>
+                <h2 class="h2"><?php echo $cont->tituloinicial ?></h2>
                 <hr class="border border-success border-1 opacity-75">
                 <div class="linha">
                     <div class="item">

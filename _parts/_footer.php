@@ -1,67 +1,93 @@
+<?php
+spl_autoload_register(function ($class) {
+    require_once "classes/{$class}.class.php";
+});
+$emp = new Empresa();
+$empresa = $emp->last("idEmpresa");
+$idEmp = $empresa->idempresa;
+$cont = new Contato();
+$contatos = $cont->exibirRodape($idEmp);
 
-<div class="f-linha">
-    <div class="f-item">
+$limitecoluna = count($contatos) / 3;
+$limitecoluna = ceil($limitecoluna);
+?>
+<div class="container-xl f-linha">
+    <?php
+    foreach ($contatos as $con):
+        $icone = "";
+        $texto = "";
+        $link = "";
+        $op_target = "";
+        switch ($con->tipocontato) {
+            case 'Celular':
+                $icone = '<i class="bi bi-telephone-outbound"></i>';
+                $link = 'tel:+55' . $con->informacaocontato;
+                $texto = $con->informacaocontato;
+                break;
+            case 'E-mail':
+                $icone = '<i class="bi bi-envelope-at"></i>';
+                $link = 'mailto:' . $con->informacaocontato;
+                $texto = $con->informacaocontato;
+                break;
+            case 'Site':
+                $icone = '<i class="bi bi-link-45deg"></i>';
+                $link = $con->informacaocontato;
+                $texto = $con->informacaocontato;
+                $op_target = 'target="_blank"';
+                break;
+            case 'Telefone':
+                $icone = '<i class="bi bi-telephone-outbound"></i>';
+                $link = 'tel:+55' . $con->informacaocontato;
+                $op_target = 'target="_blank"';
+                $texto = $con->informacaocontato;
+                break;
+            case 'WhatsApp':
+                $soNumeros = preg_replace('/\D/', '', $con->informacaocontato);
+                $icone = '<i class="bi bi-whatsapp"></i>';
+                $link = 'https://wa.me/55'.$soNumeros;
+                $texto = 'Nosso WhatasApp!';
+                $op_target = 'target="_blank"';
+                break;
+            case 'Rede Social':
+                if (strpos($con->informacaocontato, 'facebook.com') !== false) {
+                    $icone .= '<i class="bi bi-facebook"></i>';
+                    $op_target = 'target="_blank"';
+                    $link = $con->informacaocontato;
+                    $texto = 'Ishiybom';
+                } elseif (strpos($con->informacaocontato, 'instagram.com') !== false) {
+                    $icone .= '<i class="bi bi-instagram"></i>';
+                    $op_target = 'target="_blank"';
+                    $link = $con->informacaocontato;
+                    $texto = 'Ishiybom';
+                } elseif (strpos($con->informacaocontato, 'linkedin.com') !== false) {
+                    $icone .= '<i class="bi bi-linkedin"></i>';
+                    $op_target = 'target="_blank"';
+                    $link = 'tel:+55' . $con->informacaocontato;
+                    $texto = 'Ishiybom';
+                }
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
+
+
+        ?>
+
         <div class="f-linha-item">
-            <div class="icon">
-                <i class="bi bi-telephone-outbound"></i>
-            </div>
-            <div class="icon-texto">
-                (69)99909-5684
-            </div>
-        </div> 
-        <div class="f-linha-item">
-            <div class="icon">
-                <i class="bi bi-telephone-outbound"></i>
-            </div>
-            <div class="icon-texto">
-                (69)99991-5101
-            </div>
-        </div> 
-    </div>
-    <div class="f-item">
-        <div class="f-linha-item">
-            <a href="https://www.facebook.com/Agroindústria-Ishiybom-100057126353801" target="_blank">
-                <div class="icon">    
-                    <i class="bi bi-facebook"></i> 
+            <a href="<?php echo $link ?>" <?php echo $op_target ?>>
+                <div class="icon">
+                    <?php echo $icone ?>
                 </div>
-                <div class="icon-texto visivel">
-                      Agroindústria Ishiybom
+                <div class="icon-texto">
+                    <?php echo $texto ?>
                 </div>
             </a>
         </div>
-        <div class="f-linha-item">
-            <a href="https://www.instagram.com/ishiybom" target="_blank">
-                <div class="icon">    
-                    <i class="bi bi-instagram"></i> 
-                </div>
-                <div class="icon-texto visivel">
-                      Ishiybom
-                </div>
-            </a>
-        </div>
-        
-    </div>
-    <div class="f-item">
-    <div class="f-linha-item">
-        <a href="mailto:nogueira.jackson40@gmail.com">
-            <div class="icon">
-                <i class="bi bi-envelope-at"></i>
-            </div>
-                <div class="icon-texto ">
-                    nogueira.jackson40@gmail.com
-                </div>
-            </a>
-        </div>
-        <div class="f-linha-item">
-            <a href="http://wa.me/5569999915101" target="_blank">
-                <div class="icon">    
-                <i class="bi bi-whatsapp"></i> 
-                </div>
-                <div class="icon-texto visivel">
-                    Nosso Whatsapp!
-                </div>
-            </a>
-        </div>
-    </div>
-    
+        <?php
+
+    endforeach;
+    ?>
 </div>

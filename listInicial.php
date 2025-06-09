@@ -1,7 +1,7 @@
 <?php
 require_once "validaUser.php"
     ?>
-    
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,56 +17,58 @@ require_once "validaUser.php"
 
 <body>
     <header>
-        <?php include "_parts/_menu.php"; ?>    
+        <?php include "_parts/_menu.php"; ?>
     </header>
     <main class="container mt-3 mb-3">
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Título</th>
-                    <th scope="col">Açoes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                spl_autoload_register(function ($class) {
-                    require_once "classes/{$class}.class.php";
-                });
-                $inicial = new Inicial;
-                $conteudos = $inicial->all();
-                foreach ($conteudos as $conteudo):
-                    ?>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <th scope="row"><?php echo $conteudo->idinicial?></th>
-                        <td><?php echo $conteudo->tituloinicial ?></td>
-                        <td class="form-lista">
-                            <!-- Botão Editar -->
-                            <form action="<?php echo htmlspecialchars("gerInicial.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idInicial" value="<?php echo $conteudo->idinicial ?>">
-                                <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja editar o conteúdo?');">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                            </form>
-                            <!-- Botão Exluir -->
-                            <form action="<?php echo htmlspecialchars("dbInicial.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idInicial" value="<?php echo $conteudo->idinicial ?>">
-                                <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja excluir o conteúdo?');">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Açoes</th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
+                </thead>
+                <tbody class="table-group-divider">
+                    <?php
+                    spl_autoload_register(function ($class) {
+                        require_once "classes/{$class}.class.php";
+                    });
+                    $inicial = new Inicial;
+                    $conteudos = $inicial->all();
+                    foreach ($conteudos as $conteudo):
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $conteudo->idinicial ?></th>
+                            <td><?php echo $conteudo->tituloinicial ?></td>
+                            <td class="form-lista">
+                                <!-- Botão Editar -->
+                                <form action="<?php echo htmlspecialchars("gerInicial.php") ?>" method="post"
+                                    class="d-flex">
+                                    <input type="hidden" name="idInicial" value="<?php echo $conteudo->idinicial ?>">
+                                    <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
+                                        onclick="return confirm('Tem certeza que deseja editar o conteúdo?');">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </form>
+                                <!-- Botão Exluir -->
+                                <form action="<?php echo htmlspecialchars("dbInicial.php") ?>" method="post" class="d-flex">
+                                    <input type="hidden" name="idInicial" value="<?php echo $conteudo->idinicial ?>">
+                                    <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
+                                        onclick="return confirm('Tem certeza que deseja excluir o conteúdo?');">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
 
-        </table>
-            <div class="mb-3">
-                <a href="gerInicial.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Novo Conteúdo</a>
-            </div>
+            </table>
+        </div>
+        <div class="mb-3">
+            <a href="gerInicial.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Novo Conteúdo</a>
+        </div>
     </main>
     <footer>
         <?php include "_parts/_footer.php" ?>

@@ -1,7 +1,7 @@
 <?php
 require_once "validaUser.php"
     ?>
-    
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,56 +17,59 @@ require_once "validaUser.php"
 
 <body>
     <header>
-        <?php include "_parts/_menu.php"; ?>    
+        <?php include "_parts/_menu.php"; ?>
     </header>
     <main class="container mt-3 mb-3">
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Açoes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                spl_autoload_register(function ($class) {
-                    require_once "classes/{$class}.class.php";
-                });
-                $parc = new Parceiro();
-                $parceiros = $parc->all();
-                foreach ($parceiros as $parceiro):
-                    ?>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <th scope="row"><?php echo $parceiro->idparceiro ?></th>
-                        <td><?php echo $parceiro->nomeparceiro ?></td>
-                        <td class="form-lista">
-                            <!-- Botão Editar -->
-                            <form action="<?php echo htmlspecialchars("gerParceiro.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idParceiro" value="<?php echo $parceiro->idparceiro ?>">
-                                <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja editar o Parceiro?');">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                            </form>
-                            <!-- Botão Exluir -->
-                            <form action="<?php echo htmlspecialchars("dbParceiro.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idParceiro" value="<?php echo $parceiro->idparceiro ?>">
-                                <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja excluir o Parceiro?');">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Açoes</th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
+                </thead>
+                <tbody class="table-group-divider">
+                    <?php
+                    spl_autoload_register(function ($class) {
+                        require_once "classes/{$class}.class.php";
+                    });
+                    $parc = new Parceiro();
+                    $parceiros = $parc->all();
+                    foreach ($parceiros as $parceiro):
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $parceiro->idparceiro ?></th>
+                            <td><?php echo $parceiro->nomeparceiro ?></td>
+                            <td class="form-lista">
+                                <!-- Botão Editar -->
+                                <form action="<?php echo htmlspecialchars("gerParceiro.php") ?>" method="post"
+                                    class="d-flex">
+                                    <input type="hidden" name="idParceiro" value="<?php echo $parceiro->idparceiro ?>">
+                                    <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
+                                        onclick="return confirm('Tem certeza que deseja editar o Parceiro?');">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </form>
+                                <!-- Botão Exluir -->
+                                <form action="<?php echo htmlspecialchars("dbParceiro.php") ?>" method="post"
+                                    class="d-flex">
+                                    <input type="hidden" name="idParceiro" value="<?php echo $parceiro->idparceiro ?>">
+                                    <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
+                                        onclick="return confirm('Tem certeza que deseja excluir o Parceiro?');">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
 
-        </table>
-            <div class="mb-3">
-                <a href="gerParceiro.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Novo Parceiro</a>
-            </div>
+            </table>
+        </div>
+        <div class="mb-3">
+            <a href="gerParceiro.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Novo Parceiro</a>
+        </div>
     </main>
     <footer>
         <?php include "_parts/_footer.php" ?>

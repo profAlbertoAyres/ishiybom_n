@@ -106,7 +106,17 @@ class Contato extends CRUD
 
     public function allContato(int $id, string $tipo = "")
     {
-        $sql = "SELECT * FROM  $this->table WHERE idEmpresa = :idEmp and tipocontato like '%{$tipo}'";
+        $sql = "SELECT * FROM  $this->table WHERE idEmpresa = :idEmp and tipocontato like '%{$tipo}' order by tipocontato ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':idEmp', $id, PDO::PARAM_INT);
+        // Executar a consulta e verificar se funcionou
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function exibirRodape(int $id)
+    {
+        $sql = "SELECT * FROM  $this->table WHERE idEmpresa = :idEmp and rodapecontato like 'Sim' order by odermrodapecontato ";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':idEmp', $id, PDO::PARAM_INT);
         // Executar a consulta e verificar se funcionou

@@ -2,7 +2,7 @@
 $nivelPermitidos = [1];
 require_once "validaUser.php"
     ?>
-    
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -18,58 +18,60 @@ require_once "validaUser.php"
 
 <body>
     <header>
-        <?php include "_parts/_menu.php"; ?>    
+        <?php include "_parts/_menu.php"; ?>
     </header>
     <main class="container mt-3 mb-3">
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Açoes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                spl_autoload_register(function ($class) {
-                    require_once "classes/{$class}.class.php";
-                });
-                $usu = new Usuario();
-                $usuarios = $usu->all();
-                foreach ($usuarios as $usuario):
-                    ?>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <th scope="row"><?php echo $usuario->id ?></th>
-                        <td><?php echo $usuario->nomeusuario ?></td>
-                        <td><?php echo $usuario->emailusuario ?></td>
-                        <td class="form-lista">
-                            <!-- Botão Editar -->
-                            <form action="<?php echo htmlspecialchars("altUsuario.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idUsuario" value="<?php echo $usuario->id ?>">
-                                <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja editar o usuario?');">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                            </form>
-                            <!-- Botão Exluir -->
-                            <form action="<?php echo htmlspecialchars("dbusuario.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idUsuario" value="<?php echo $usuario->id ?>">
-                                <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja excluir o usuario?');">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Açoes</th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
+                </thead>
+                <tbody class="table-group-divider">
+                    <?php
+                    spl_autoload_register(function ($class) {
+                        require_once "classes/{$class}.class.php";
+                    });
+                    $usu = new Usuario();
+                    $usuarios = $usu->all();
+                    foreach ($usuarios as $usuario):
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $usuario->id ?></th>
+                            <td><?php echo $usuario->nomeusuario ?></td>
+                            <td><?php echo $usuario->emailusuario ?></td>
+                            <td class="form-lista">
+                                <!-- Botão Editar -->
+                                <form action="<?php echo htmlspecialchars("altUsuario.php") ?>" method="post"
+                                    class="d-flex">
+                                    <input type="hidden" name="idUsuario" value="<?php echo $usuario->id ?>">
+                                    <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
+                                        onclick="return confirm('Tem certeza que deseja editar o usuario?');">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </form>
+                                <!-- Botão Exluir -->
+                                <form action="<?php echo htmlspecialchars("dbusuario.php") ?>" method="post" class="d-flex">
+                                    <input type="hidden" name="idUsuario" value="<?php echo $usuario->id ?>">
+                                    <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
+                                        onclick="return confirm('Tem certeza que deseja excluir o usuario?');">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
 
-        </table>
-            <div class="mb-3">
-                <a href="cadUsuario.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Novo usuario</a>
-            </div>
+            </table>
+        </div>
+        <div class="mb-3">
+            <a href="cadUsuario.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Novo usuario</a>
+        </div>
     </main>
     <footer>
         <?php include "_parts/_footer.php" ?>

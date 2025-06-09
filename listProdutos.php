@@ -1,7 +1,7 @@
 <?php
 require_once "validaUser.php"
     ?>
-    
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,57 +17,60 @@ require_once "validaUser.php"
 
 <body>
     <header>
-        <?php include "_parts/_menu.php"; ?>    
+        <?php include "_parts/_menu.php"; ?>
     </header>
     <main class="container mt-3 mb-3">
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Açoes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                spl_autoload_register(function ($class) {
-                    require_once "classes/{$class}.class.php";
-                });
-                $prod = new Produto();
-                $produtos = $prod->all();
-                foreach ($produtos as $produto):
-                    ?>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <th scope="row"><?php echo $produto->idproduto ?></th>
-                        <td><?php echo $produto->nomeproduto ?></td>
-                        <td class="form-lista">
-                            <!-- Botão Editar -->
-                            <form action="<?php echo htmlspecialchars("gerProduto.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idProduto" value="<?php echo $produto->idproduto ?>">
-                                <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja Editar o Produto?');">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                            </form>
-                            <!-- Botão Exluir -->
-                            <form action="<?php echo htmlspecialchars("dbProduto.php") ?>" method="post" class="d-flex">
-                                <input type="hidden" name="idProduto" value="<?php echo $produto->idproduto ?>">
-                                <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Tem certeza que deseja excluir o Produto?');">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
-                            <a href="gerFotoProduto.php?idProduto=<?php echo $produto->idproduto; ?>" class="btn btn-secondary"><i class="bi bi-camera"></i></a>
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Açoes</th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
+                </thead>
+                <tbody class="table-group-divider">
+                    <?php
+                    spl_autoload_register(function ($class) {
+                        require_once "classes/{$class}.class.php";
+                    });
+                    $prod = new Produto();
+                    $produtos = $prod->all();
+                    foreach ($produtos as $produto):
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $produto->idproduto ?></th>
+                            <td><?php echo $produto->nomeproduto ?></td>
+                            <td class="form-lista">
+                                <!-- Botão Editar -->
+                                <form action="<?php echo htmlspecialchars("gerProduto.php") ?>" method="post"
+                                    class="d-flex">
+                                    <input type="hidden" name="idProduto" value="<?php echo $produto->idproduto ?>">
+                                    <button href="#" name="btnEditar" class="btn btn-info btn-sm" type="submit"
+                                        onclick="return confirm('Tem certeza que deseja Editar o Produto?');">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </form>
+                                <!-- Botão Exluir -->
+                                <form action="<?php echo htmlspecialchars("dbProduto.php") ?>" method="post" class="d-flex">
+                                    <input type="hidden" name="idProduto" value="<?php echo $produto->idproduto ?>">
+                                    <button href="#" name="btnExcluir" class="btn btn-danger btn-sm" type="submit"
+                                        onclick="return confirm('Tem certeza que deseja excluir o Produto?');">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                                <a href="gerFotoProduto.php?idProduto=<?php echo $produto->idproduto; ?>"
+                                    class="btn btn-secondary"><i class="bi bi-camera"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
 
-        </table>
-            <div class="mb-3">
-                <a href="gerProduto.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Novo Produto</a>
-            </div>
+            </table>
+        </div>
+        <div class="mb-3">
+            <a href="gerProduto.php" class="btn btn-success"><i class="bi bi-plus-square"></i> Novo Produto</a>
+        </div>
     </main>
     <footer>
         <?php include "_parts/_footer.php" ?>

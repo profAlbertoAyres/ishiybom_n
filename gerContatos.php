@@ -75,7 +75,7 @@ if (filter_has_var(INPUT_POST, "btnEditar")) {
       <?php  ?>
       <div class="col-md-6 mb-3">
         <label for="odermRodapeRontato" class="form-label">Ordem no Rodapé</label>
-        <input type="number" name="odermRodapeRontato" id="odermRodapeRontato" class="form-control"  value="<?php echo $contato->odermrodapecontato ?? ''; ?>">
+        <input type="number" name="odermRodapeRontato" id="odermRodapeRontato" class="form-control"  value="<?php echo $contato->odermrodapecontato ?? null; ?>">
       </div>
       <div class="col-12 mb-3">
         <button type="submit" class="btn btn-primary" name="Gravar">
@@ -90,7 +90,11 @@ if (filter_has_var(INPUT_POST, "btnEditar")) {
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  
+  <!-- seu HTML... -->
+
+<script src="JS/mascaras.js"></script>
+</body>
+
 </body>
 
 </html>
