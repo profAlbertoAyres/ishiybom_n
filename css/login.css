@@ -72,7 +72,6 @@ main{
 }
 
 .form-login a{
-    text-decoration: dashed;
     color: white;
 }
 
@@ -107,7 +106,6 @@ main{
         background-color: rgb(25 75 50 );
     }
     .form-login a{
-    text-decoration: dashed;
     color: black;
 }
 
